@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:guiago/features/home/logic/models.dart';
-import 'package:guiago/features/home/ui/views/motel_list.dart';
-import 'package:guiago/features/home/ui/widgets/filter.dart';
-import 'package:guiago/features/home/ui/widgets/header.dart';
-import 'package:guiago/features/home/ui/widgets/highlight_offer_widget.dart';
+import 'package:guiago/presentation/home/logic/models.dart';
+import 'package:guiago/presentation/home/views/motel_list.dart';
+import 'package:guiago/presentation/home/widgets/filter.dart';
+import 'package:guiago/presentation/home/widgets/header.dart';
+import 'package:guiago/presentation/home/widgets/highlight_offer_widget.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});

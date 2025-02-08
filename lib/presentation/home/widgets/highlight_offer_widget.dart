@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:guiago/core/theme/go_colors.dart';
-import 'package:guiago/features/home/logic/models.dart';
-import 'package:guiago/features/home/ui/widgets/dots_indicator.dart';
+import 'package:guiago/presentation/theme/app_theme.dart';
+import 'package:guiago/presentation/home/logic/models.dart';
+import 'package:guiago/presentation/home/widgets/dots_indicator.dart';
 import 'package:intl/intl.dart';
 
 class HighlightOfferWidget extends StatelessWidget {

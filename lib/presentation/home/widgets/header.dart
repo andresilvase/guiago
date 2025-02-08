@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:guiago/core/theme/go_colors.dart';
-import 'package:guiago/features/home/ui/widgets/departure_time_selector.dart';
-import 'package:guiago/features/home/ui/widgets/my_local.dart';
+import 'package:guiago/presentation/theme/app_theme.dart';
+import 'package:guiago/presentation/home/widgets/departure_time_selector.dart';
+import 'package:guiago/presentation/home/widgets/my_local.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key, this.onDepartureTimeChange});

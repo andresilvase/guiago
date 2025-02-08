@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:guiago/core/theme/go_colors.dart';
-import 'package:guiago/features/home/ui/views/home.dart';
+import 'package:guiago/presentation/theme/app_theme.dart';
+import 'package:guiago/presentation/home/views/home.dart';
 
 void main() {
   runApp(const MyApp());

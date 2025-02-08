@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:guiago/core/theme/go_colors.dart';
+import 'package:guiago/presentation/theme/app_theme.dart';
 
 class DepartureTimeSelector extends StatelessWidget {
   const DepartureTimeSelector({super.key, this.onDepartureTimeChange});
