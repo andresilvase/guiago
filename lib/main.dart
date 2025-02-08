@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
-final Color primaryColor = Color(0xFFD11621);
-final Color secondaryColor = Color(0xFF1ABA8E);
-final Color whiteColor = Color(0xFFF8F9FB);
-final Color backgroundColor = Color(0xFFF0F0F0);
-final Color textColor = Color(0xFF4B4B4B);
+import 'package:guiago/core/theme/go_colors.dart';
+import 'package:guiago/features/home/logic/models.dart';
+import 'package:guiago/features/home/ui/widgets/header.dart';
+import 'package:guiago/features/home/ui/widgets/highlight_offer_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,171 +37,34 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Widget mano() {
-    return Column(
-      spacing: 16,
-      children: [
-        header(),
-        myLocal(),
-      ],
-    );
-  }
-
-  Widget offers() {
-    return Container(
-      color: backgroundColor,
-      padding: EdgeInsets.all(8),
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        elevation: 0.1,
-        color: whiteColor,
-        child: Row(
-          children: [
-            Container(
-              margin: EdgeInsets.all(8),
-              width: 160,
-              height: 220,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.purple,
-              ),
-            ),
-            Container(
-              width: 200,
-              alignment: Alignment.center,
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: 4,
-                    children: [
-                      Text("🔥", style: TextStyle(fontSize: 22), textAlign: TextAlign.left),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "motel savanas",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: textColor,
-                                fontSize: 18,
-                              ),
-                              textAlign: TextAlign.left,
-                            ),
-                            SizedBox(
-                              width: 200,
-                              child: Text(
-                                "nossa senhora de lourdes - aparecida de goiânia",
-                                style: TextStyle(
-                                  color: textColor,
-                                  fontSize: 11,
-                                ),
-                                overflow: TextOverflow.clip,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Text(
-                      "30% de desonto",
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        fontWeight: FontWeight.w600,
-                        decorationThickness: .3,
-                        color: textColor,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4.0),
-                    child: Text(
-                      "a partir de R\$ 57,98",
-                      style: TextStyle(
-                        color: textColor,
-                        fontSize: 11,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(6.0),
-                    decoration: BoxDecoration(
-                      color: secondaryColor,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      spacing: 6,
-                      children: [
-                        Column(
-                          children: [
-                            Text(
-                              "reservar",
-                              style: TextStyle(
-                                color: whiteColor,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            SizedBox(height: 2),
-                          ],
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          color: whiteColor,
-                          size: 12,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primaryColor,
+      backgroundColor: GOColors.primaryColor,
       body: SafeArea(
         bottom: false,
         child: Column(
           children: [
-            mano(),
+            Header(onDepartureTimeChange: () {}),
             SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height - 175,
+            Expanded(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(24),
                 child: NestedScrollView(
                   headerSliverBuilder: (context, innerBoxIsScrolled) {
                     return [
-                      SliverAppBar(
-                        flexibleSpace: FlexibleSpaceBar(
-                          background: offers(),
+                      SliverToBoxAdapter(
+                        child: Container(
+                          color: GOColors.backgroundColor,
+                          padding: EdgeInsets.all(8),
+                          height: 224,
+                          child: Center(
+                            child: HighlightOfferWidget(offers: HighlightOffer.list()),
+                          ),
                         ),
-                        floating: true,
-                        pinned: false,
-                        expandedHeight: 208,
                       ),
                       SliverPersistentHeader(
-                        floating: true,
+                        floating: false,
                         pinned: true,
                         delegate: PersistentHeaderDelegate(),
                       ),
@@ -212,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   body: Container(
                     padding: EdgeInsets.zero,
                     margin: EdgeInsets.zero,
-                    color: whiteColor,
+                    color: GOColors.whiteColor,
                     child: ListView.builder(
                       padding: EdgeInsets.zero,
                       itemCount: 100,
@@ -229,127 +90,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget header() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Icon(Icons.menu, color: whiteColor),
-          switcher(),
-          Icon(Icons.search, color: whiteColor),
-        ],
-      ),
-    );
-  }
-
-  Widget switcher() {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8),
-      // height: 40,
-      decoration: BoxDecoration(
-        color: Colors.black26,
-        borderRadius: BorderRadius.circular(24),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          switcherOption(
-            icon: Icons.flash_on_rounded,
-            title: "ir agora",
-            isSelected: true,
-          ),
-          switcherOption(
-            icon: Icons.calendar_month_outlined,
-            title: "ir outro dia",
-            isSelected: false,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget switcherOption({
-    bool isSelected = false,
-    required IconData icon,
-    required String title,
-  }) {
-    return Container(
-      decoration: BoxDecoration(
-        color: isSelected ? whiteColor : null,
-        borderRadius: BorderRadius.circular(24),
-      ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 24,
-        vertical: 8,
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        spacing: 6,
-        children: [
-          Icon(
-            icon,
-            color: isSelected ? primaryColor : whiteColor,
-            size: 16,
-          ),
-          Text(
-            title,
-            style: TextStyle(
-              color: isSelected ? Colors.black : whiteColor,
-              fontWeight: FontWeight.w600,
-              fontSize: 16,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget dashedLined() {
-    return SizedBox(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: List.generate(37, (int index) {
-          return Container(
-            margin: EdgeInsets.only(right: 2),
-            color: Colors.white70,
-            height: 0.6,
-            width: 2,
-          );
-        }),
-      ),
-    );
-  }
-
-  Widget myLocal() {
-    return Column(
-      spacing: 4,
-      children: [
-        Row(
-          spacing: 4,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'minha localização',
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                color: whiteColor,
-                fontSize: 14,
-              ),
-            ),
-            Icon(
-              Icons.keyboard_arrow_down_rounded,
-              color: whiteColor,
-            )
-          ],
-        ),
-        dashedLined(),
-      ],
     );
   }
 }
