@@ -13,22 +13,33 @@ class HighlightOfferWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final PageController pageController = PageController(viewportFraction: 1);
 
-    return Column(
-      children: [
-        SizedBox(
-          height: 184,
-          child: PageView.builder(
-            controller: pageController,
-            itemCount: offers.length,
-            itemBuilder: (context, index) {
-              final HighlightOffer highlightOffer = offers[index];
+    return Visibility(
+      child: SliverToBoxAdapter(
+        child: Container(
+          color: GOColors.backgroundColor,
+          padding: EdgeInsets.all(8),
+          height: 224,
+          child: Center(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 184,
+                  child: PageView.builder(
+                    controller: pageController,
+                    itemCount: offers.length,
+                    itemBuilder: (context, index) {
+                      final HighlightOffer highlightOffer = offers[index];
 
-              return highlightOfferItem(highlightOffer);
-            },
+                      return highlightOfferItem(highlightOffer);
+                    },
+                  ),
+                ),
+                dotsIndicator(pageController, offers.length),
+              ],
+            ),
           ),
         ),
-        dotsIndicator(pageController, offers.length),
-      ],
+      ),
     );
   }
 
