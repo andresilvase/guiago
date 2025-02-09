@@ -19,7 +19,7 @@ class _FilterList extends SliverPersistentHeaderDelegate {
             color: GOColors.dotsIndicatorColor.withValues(alpha: 0.4),
           ),
         ),
-        color: GOColors.white,
+        color: GOColors.grey2,
       ),
       child: child,
     );

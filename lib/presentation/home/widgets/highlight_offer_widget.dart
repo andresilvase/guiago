@@ -5,7 +5,7 @@ import 'package:guiago/presentation/home/widgets/dots_indicator.dart';
 import 'package:intl/intl.dart';
 
 class HighlightOfferWidget extends StatelessWidget {
-  const HighlightOfferWidget({super.key, required this.offers});
+  const HighlightOfferWidget({super.key, this.offers = const []});
 
   final List<HighlightOffer> offers;
 
@@ -13,10 +13,11 @@ class HighlightOfferWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final PageController pageController = PageController(viewportFraction: 1);
 
-    return Visibility(
-      child: SliverToBoxAdapter(
+    return SliverToBoxAdapter(
+      child: Visibility(
+        visible: offers.isNotEmpty,
         child: Container(
-          color: GOColors.backgroundColor,
+          color: GOColors.grey1,
           padding: EdgeInsets.all(8),
           height: 224,
           child: Center(

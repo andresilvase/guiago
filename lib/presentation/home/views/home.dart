@@ -4,6 +4,7 @@ import 'package:guiago/presentation/home/views/motel_list.dart';
 import 'package:guiago/presentation/home/widgets/filter.dart';
 import 'package:guiago/presentation/home/widgets/header.dart';
 import 'package:guiago/presentation/home/widgets/highlight_offer_widget.dart';
+import 'package:guiago/presentation/theme/app_theme.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -28,11 +29,14 @@ class Home extends StatelessWidget {
     return NestedScrollView(
       headerSliverBuilder: (_, __) {
         return [
-          HighlightOfferWidget(offers: HighlightOffer.list()),
+          HighlightOfferWidget(),
           Filter(),
         ];
       },
-      body: MotelList(),
+      body: Container(
+        color: GOColors.grey2,
+        child: MotelList(),
+      ),
     );
   }
 }
