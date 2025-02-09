@@ -6,6 +6,7 @@ class GOColors {
 
   static final Color grey1 = Color(0xFFF0F0F0);
   static final Color grey2 = Color(0xFFF8F9FB);
+  static final Color grey3 = Color(0xFF959595);
 
   static final Color white = Color(0xFFFFFFFF);
   static final Color black = Color(0xFF000000);

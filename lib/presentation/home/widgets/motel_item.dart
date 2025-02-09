@@ -9,7 +9,7 @@ class MotelItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: GOColors.grey2,
-      height: Get.height * .9,
+      height: Get.height * .97,
       child: Column(
         children: [
           header(),
@@ -181,7 +181,7 @@ class MotelItem extends StatelessWidget {
       width: Get.width,
       child: Column(
         children: [
-          imageAndName(),
+          imageAndName(imageUrl: 'https://cdn.guiademoteis.com.br/imagens/suites/big/3148_big_9827_1.jpg'),
           items(),
           timeAndPrice(),
         ],
@@ -189,19 +189,19 @@ class MotelItem extends StatelessWidget {
     );
   }
 
-  Widget imageAndName() {
+  Widget imageAndName({required String imageUrl, int? remainingUnits}) {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: 1.5, horizontal: 4),
-      elevation: 0.1,
+      margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 4),
+      elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
       color: GOColors.white,
       child: Column(
         children: [
-          image('https://cdn.guiademoteis.com.br/imagens/suites/big/3148_big_9827_1.jpg'),
+          image(imageUrl),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -212,29 +212,30 @@ class MotelItem extends StatelessWidget {
                     fontSize: 24,
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: 4,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(top: 2),
-                      child: Icon(
-                        color: GOColors.primaryColor,
-                        Icons.notifications_active,
-                        size: 14,
+                Visibility(
+                  visible: remainingUnits != null,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: 4,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 2),
+                        child: Icon(
+                          color: GOColors.primaryColor,
+                          Icons.notifications_active,
+                          size: 14,
+                        ),
                       ),
-                    ),
-                    Visibility(
-                      child: Text(
-                        'só mais 2 pelo app',
+                      Text(
+                        'só mais ${remainingUnits ?? 1} pelo app',
                         style: TextStyle(
                           color: GOColors.primaryColor,
                           fontWeight: FontWeight.w600,
                           fontSize: 12,
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -264,18 +265,66 @@ class MotelItem extends StatelessWidget {
   Widget items() {
     return Card(
       margin: EdgeInsets.symmetric(vertical: 1.5, horizontal: 4),
-      elevation: 0.1,
+      elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
       color: GOColors.white,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 28),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 10),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(Icons.garage),
+            item(Icons.garage),
+            item(Icons.kitchen),
+            item(Icons.ac_unit),
+            item(Icons.wifi),
+            seeAllItems(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget item(IconData icon) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(4),
+        color: GOColors.grey2,
+      ),
+      padding: EdgeInsets.all(8),
+      child: Icon(
+        icon,
+        color: GOColors.grey3,
+        size: 32,
+      ),
+    );
+  }
+
+  Widget seeAllItems() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 12.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 40,
+            child: Text(
+              'ver todos',
+              style: TextStyle(
+                color: GOColors.grey3,
+                fontWeight: FontWeight.w600,
+                fontSize: 12,
+              ),
+              textAlign: TextAlign.end,
+            ),
+          ),
+          Icon(
+            Icons.keyboard_arrow_down_rounded,
+            color: GOColors.textColor,
+            size: 13,
+          ),
+        ],
       ),
     );
   }
@@ -292,17 +341,41 @@ class MotelItem extends StatelessWidget {
 
   Widget timeAndPriceItem() {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: 1.5, horizontal: 4),
-      elevation: 0.1,
+      margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 4),
+      elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
       color: GOColors.white,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 28),
+        padding: const EdgeInsets.symmetric(horizontal: 016.0, vertical: 16),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(Icons.garage),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '3 horas',
+                  style: TextStyle(
+                    color: GOColors.textColor,
+                    fontSize: 24,
+                  ),
+                ),
+                Text(
+                  'R\$ 63,18',
+                  style: TextStyle(
+                    color: GOColors.textColor,
+                    fontSize: 24,
+                  ),
+                ),
+              ],
+            ),
+            Icon(
+              Icons.arrow_forward_ios_rounded,
+              color: GOColors.textColor,
+              size: 18,
+            ),
           ],
         ),
       ),

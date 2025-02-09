@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:guiago/presentation/home/logic/models.dart';
 import 'package:guiago/presentation/home/views/motel_list.dart';
 import 'package:guiago/presentation/home/widgets/filter.dart';
 import 'package:guiago/presentation/home/widgets/header.dart';
