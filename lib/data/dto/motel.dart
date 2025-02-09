@@ -2,7 +2,7 @@ import 'package:guiago/data/dto/suites.dart';
 
 enum MoteisEnum { fantasia, logo, bairro, distancia, qtdFavoritos, suites, qtdAvaliacoes, media }
 
-class Moteis {
+class Motel {
   List<Suites>? suites;
   int? qtdAvaliacoes;
   double? distancia;
@@ -12,7 +12,7 @@ class Moteis {
   double? media;
   String? logo;
 
-  Moteis({
+  Motel({
     this.qtdAvaliacoes,
     this.qtdFavoritos,
     this.distancia,
@@ -23,7 +23,7 @@ class Moteis {
     this.logo,
   });
 
-  factory Moteis.fromJson(Map<String, dynamic> json) {
+  factory Motel.fromJson(Map<String, dynamic> json) {
     final newSuitesList = <Suites>[];
 
     if (json[MoteisEnum.suites.name] != null) {
@@ -32,7 +32,7 @@ class Moteis {
       });
     }
 
-    return Moteis(
+    return Motel(
       qtdAvaliacoes: json[MoteisEnum.qtdAvaliacoes.name],
       qtdFavoritos: json[MoteisEnum.qtdFavoritos.name],
       distancia: json[MoteisEnum.distancia.name],

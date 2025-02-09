@@ -9,7 +9,9 @@ class MotelList extends StatelessWidget {
     return Container(
       padding: EdgeInsets.zero,
       margin: EdgeInsets.zero,
-      color: GOColors.whiteColor,
+      decoration: BoxDecoration(
+        color: GOColors.whiteColor,
+      ),
       child: ListView.builder(
         padding: EdgeInsets.zero,
         itemCount: 100,

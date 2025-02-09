@@ -1,34 +1,139 @@
 import 'package:flutter/material.dart';
+import 'package:guiago/presentation/theme/app_theme.dart';
 
-class _FilterWidget extends SliverPersistentHeaderDelegate {
-  Widget cardOffers() {
+class _FilterList extends SliverPersistentHeaderDelegate {
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return filterContainer(
+      child: filterList(),
+    );
+  }
+
+  Widget filterContainer({required Widget child}) {
     return Container(
-      padding: EdgeInsets.zero,
-      margin: EdgeInsets.zero,
-      color: Colors.green,
+      padding: const EdgeInsets.only(left: 8),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        border: Border.fromBorderSide(
+          BorderSide(
+            color: GOColors.dotsIndicatorColor.withValues(alpha: 0.4),
+            width: 1,
+          ),
+        ),
+        color: GOColors.whiteColor,
+      ),
+      child: child,
+    );
+  }
+
+  Widget filterList() {
+    return ListView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: 8,
+      itemBuilder: (_, index) {
+        if (index == 0) {
+          return filterButton();
+        }
+        return filterItem();
+      },
+    );
+  }
+
+  Widget filterItem({bool isSelected = true}) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 4),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: GOColors.dotsIndicatorColor.withValues(alpha: 0.4),
+        ),
+        color: isSelected ? GOColors.primaryColor : GOColors.whiteColor,
+      ),
+      width: 80,
+      child: Text(
+        'filtros',
+        style: TextStyle(
+          color: isSelected ? GOColors.whiteColor : GOColors.textColor,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    );
+  }
+
+  Widget filterButton() {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        filterButtonFirstLayer(),
+        circleBadgeFiltersCount(),
+      ],
+    );
+  }
+
+  Widget filterButtonFirstLayer() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: Row(
         children: [
           Container(
-            margin: EdgeInsets.all(8),
-            color: Colors.purple,
-            width: 120,
-            height: 40,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(
+                color: GOColors.dotsIndicatorColor.withValues(alpha: 0.4),
+              ),
+              color: GOColors.whiteColor,
+            ),
+            padding: EdgeInsets.symmetric(vertical: 6),
+            width: 80,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 4,
+              children: [
+                Icon(
+                  color: GOColors.textColor,
+                  Icons.tune,
+                  size: 16,
+                ),
+                Text(
+                  'filtros',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: GOColors.textColor,
+                  ),
+                ),
+              ],
+            ),
           )
         ],
       ),
     );
   }
 
-  @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      padding: EdgeInsets.zero,
-      margin: EdgeInsets.zero,
-      child: cardOffers(),
+  Widget circleBadgeFiltersCount() {
+    return Positioned(
+      top: 8,
+      left: 8,
+      child: Container(
+        width: 16,
+        height: 16,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: GOColors.primaryColor,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Text(
+          '1',
+          style: TextStyle(
+            color: GOColors.whiteColor,
+            fontSize: 10,
+          ),
+        ),
+      ),
     );
   }
 
-  final extent = 56.0;
+  final extent = 60.0;
 
   @override
   double get maxExtent => extent;
@@ -48,7 +153,7 @@ class Filter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPersistentHeader(
-      delegate: _FilterWidget(),
+      delegate: _FilterList(),
       floating: false,
       pinned: true,
     );
