@@ -1,19 +1,19 @@
-enum EnumDiscount { desconto }
+enum EnumDiscountDTO { desconto }
 
-class SuiteDiscount {
+class SuiteDiscountDTO {
   double? desconto;
 
-  SuiteDiscount({this.desconto});
+  SuiteDiscountDTO({this.desconto});
 
-  factory SuiteDiscount.fromJson(Map<String, dynamic> json) {
-    return SuiteDiscount(
-      desconto: json[EnumDiscount.desconto.name],
+  factory SuiteDiscountDTO.fromJson(Map<String, dynamic> json) {
+    return SuiteDiscountDTO(
+      desconto: json[EnumDiscountDTO.desconto.name],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      EnumDiscount.desconto.name: desconto,
+      EnumDiscountDTO.desconto.name: desconto,
     };
   }
 }

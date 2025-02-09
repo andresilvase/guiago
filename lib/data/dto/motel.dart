@@ -1,9 +1,9 @@
 import 'package:guiago/data/dto/suites.dart';
 
-enum MoteisEnum { fantasia, logo, bairro, distancia, qtdFavoritos, suites, qtdAvaliacoes, media }
+enum MotelDTOEnum { fantasia, logo, bairro, distancia, qtdFavoritos, suites, qtdAvaliacoes, media }
 
-class Motel {
-  List<Suites>? suites;
+class MotelDTO {
+  List<SuitesDTO>? suites;
   int? qtdAvaliacoes;
   double? distancia;
   int? qtdFavoritos;
@@ -12,7 +12,7 @@ class Motel {
   double? media;
   String? logo;
 
-  Motel({
+  MotelDTO({
     this.qtdAvaliacoes,
     this.qtdFavoritos,
     this.distancia,
@@ -23,37 +23,37 @@ class Motel {
     this.logo,
   });
 
-  factory Motel.fromJson(Map<String, dynamic> json) {
-    final newSuitesList = <Suites>[];
+  factory MotelDTO.fromJson(Map<String, dynamic> json) {
+    final newSuitesList = <SuitesDTO>[];
 
-    if (json[MoteisEnum.suites.name] != null) {
-      json[MoteisEnum.suites.name].forEach((s) {
-        newSuitesList.add(Suites.fromJson(s));
+    if (json[MotelDTOEnum.suites.name] != null) {
+      json[MotelDTOEnum.suites.name].forEach((s) {
+        newSuitesList.add(SuitesDTO.fromJson(s));
       });
     }
 
-    return Motel(
-      qtdAvaliacoes: json[MoteisEnum.qtdAvaliacoes.name],
-      qtdFavoritos: json[MoteisEnum.qtdFavoritos.name],
-      distancia: json[MoteisEnum.distancia.name],
-      fantasia: json[MoteisEnum.fantasia.name],
-      bairro: json[MoteisEnum.bairro.name],
-      media: json[MoteisEnum.media.name],
-      logo: json[MoteisEnum.logo.name],
+    return MotelDTO(
+      qtdAvaliacoes: json[MotelDTOEnum.qtdAvaliacoes.name],
+      qtdFavoritos: json[MotelDTOEnum.qtdFavoritos.name],
+      distancia: json[MotelDTOEnum.distancia.name],
+      fantasia: json[MotelDTOEnum.fantasia.name],
+      bairro: json[MotelDTOEnum.bairro.name],
+      media: json[MotelDTOEnum.media.name],
+      logo: json[MotelDTOEnum.logo.name],
       suites: newSuitesList,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      MoteisEnum.suites.name: suites?.map((s) => s.toJson()).toList(),
-      MoteisEnum.qtdAvaliacoes.name: qtdAvaliacoes,
-      MoteisEnum.qtdFavoritos.name: qtdFavoritos,
-      MoteisEnum.distancia.name: distancia,
-      MoteisEnum.fantasia.name: fantasia,
-      MoteisEnum.bairro.name: bairro,
-      MoteisEnum.media.name: media,
-      MoteisEnum.logo.name: logo,
+      MotelDTOEnum.suites.name: suites?.map((s) => s.toJson()).toList(),
+      MotelDTOEnum.qtdAvaliacoes.name: qtdAvaliacoes,
+      MotelDTOEnum.qtdFavoritos.name: qtdFavoritos,
+      MotelDTOEnum.distancia.name: distancia,
+      MotelDTOEnum.fantasia.name: fantasia,
+      MotelDTOEnum.bairro.name: bairro,
+      MotelDTOEnum.media.name: media,
+      MotelDTOEnum.logo.name: logo,
     };
   }
 }

@@ -8,10 +8,10 @@ class RemoteResponseDataSource implements DataSource {
   RemoteResponseDataSource({required this.apiService});
 
   @override
-  Future<PayloadResponse> getData() async {
+  Future<APIResponse> getData() async {
     final response = await apiService.get();
 
-    final responseData = PayloadResponse.fromJson(response);
+    final responseData = APIResponse.fromJson(response);
 
     return responseData;
   }

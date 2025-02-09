@@ -8,13 +8,13 @@ class APIService {
 
   APIService({required this.baseUrl, required this.client});
 
-  Future<dynamic> get() async {
+  Future<Map<String, dynamic>> get() async {
     final response = await client.get(Uri.parse(baseUrl));
 
     return _handleResponse(response);
   }
 
-  dynamic _handleResponse(http.Response response) {
+  Map<String, dynamic> _handleResponse(http.Response response) {
     if (response.statusCode >= 200 && response.statusCode < 300) {
       return jsonDecode(response.body);
     } else {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:guiago/core/domain/highlight_offer.dart';
 import 'package:guiago/presentation/theme/app_theme.dart';
-import 'package:guiago/presentation/home/logic/models.dart';
 import 'package:guiago/presentation/home/widgets/dots_indicator.dart';
 import 'package:intl/intl.dart';
 

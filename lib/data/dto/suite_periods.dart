@@ -1,16 +1,16 @@
 import 'package:guiago/data/dto/suite_discount.dart';
 
-enum SuitePeriodsEnum { tempoFormatado, tempo, valor, valorTotal, temCortesia, desconto }
+enum SuitePeriodsDTOEnum { tempoFormatado, tempo, valor, valorTotal, temCortesia, desconto }
 
-class SuitePeriods {
-  SuiteDiscount? desconto;
+class SuitePeriodsDTO {
+  SuiteDiscountDTO? desconto;
   String? tempoFormatado;
   double? valorTotal;
   bool? temCortesia;
   String? tempo;
   double? valor;
 
-  SuitePeriods({
+  SuitePeriodsDTO({
     this.tempoFormatado,
     this.temCortesia,
     this.valorTotal,
@@ -19,25 +19,25 @@ class SuitePeriods {
     this.valor,
   });
 
-  factory SuitePeriods.fromJson(Map<String, dynamic> json) {
-    return SuitePeriods(
-      desconto: SuiteDiscount.fromJson(json[SuitePeriodsEnum.desconto.name]),
-      tempoFormatado: json[SuitePeriodsEnum.tempoFormatado.name],
-      temCortesia: json[SuitePeriodsEnum.temCortesia.name],
-      valorTotal: json[SuitePeriodsEnum.valorTotal.name],
-      tempo: json[SuitePeriodsEnum.tempo.name],
-      valor: json[SuitePeriodsEnum.valor.name],
+  factory SuitePeriodsDTO.fromJson(Map<String, dynamic> json) {
+    return SuitePeriodsDTO(
+      desconto: SuiteDiscountDTO.fromJson(json[SuitePeriodsDTOEnum.desconto.name]),
+      tempoFormatado: json[SuitePeriodsDTOEnum.tempoFormatado.name],
+      temCortesia: json[SuitePeriodsDTOEnum.temCortesia.name],
+      valorTotal: json[SuitePeriodsDTOEnum.valorTotal.name],
+      tempo: json[SuitePeriodsDTOEnum.tempo.name],
+      valor: json[SuitePeriodsDTOEnum.valor.name],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      SuitePeriodsEnum.desconto.name: desconto?.toJson(),
-      SuitePeriodsEnum.tempoFormatado.name: tempoFormatado,
-      SuitePeriodsEnum.temCortesia.name: temCortesia,
-      SuitePeriodsEnum.valorTotal.name: valorTotal,
-      SuitePeriodsEnum.tempo.name: tempo,
-      SuitePeriodsEnum.valor.name: valor,
+      SuitePeriodsDTOEnum.desconto.name: desconto?.toJson(),
+      SuitePeriodsDTOEnum.tempoFormatado.name: tempoFormatado,
+      SuitePeriodsDTOEnum.temCortesia.name: temCortesia,
+      SuitePeriodsDTOEnum.valorTotal.name: valorTotal,
+      SuitePeriodsDTOEnum.tempo.name: tempo,
+      SuitePeriodsDTOEnum.valor.name: valor,
     };
   }
 }

@@ -3,10 +3,10 @@ import 'package:guiago/data/dto/response.dart';
 
 class LocalResponseDataSource implements DataSource {
   @override
-  Future<PayloadResponse> getData() async {
+  Future<APIResponse> getData() async {
     final response = {'local': 'response'};
 
-    final responseData = PayloadResponse.fromJson(response);
+    final responseData = APIResponse.fromJson(response);
 
     return responseData;
   }

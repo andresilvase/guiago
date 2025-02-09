@@ -2,8 +2,8 @@ import 'package:guiago/data/dto/motel.dart';
 
 enum MotelDataEnum { qtdPorPagina, totalSuites, totalMoteis, maxPaginas, moteis, pagina, raio }
 
-class MotelData {
-  List<Motel>? moteis;
+class ResponseData {
+  List<MotelDTO> moteis;
   int? qtdPorPagina;
   int? totalSuites;
   int? totalMoteis;
@@ -11,26 +11,26 @@ class MotelData {
   int? pagina;
   int? raio;
 
-  MotelData({
+  ResponseData({
+    this.moteis = const [],
     this.qtdPorPagina,
     this.totalMoteis,
     this.totalSuites,
     this.maxPaginas,
-    this.moteis,
     this.pagina,
     this.raio,
   });
 
-  factory MotelData.fromJson(Map<String, dynamic> json) {
-    final newMotelList = <Motel>[];
+  factory ResponseData.fromJson(Map<String, dynamic> json) {
+    final newMotelList = <MotelDTO>[];
 
     if (json[MotelDataEnum.moteis.name] != null) {
       json[MotelDataEnum.moteis.name].forEach((m) {
-        newMotelList.add(Motel.fromJson(m));
+        newMotelList.add(MotelDTO.fromJson(m));
       });
     }
 
-    return MotelData(
+    return ResponseData(
       qtdPorPagina: json[MotelDataEnum.qtdPorPagina.name],
       totalSuites: json[MotelDataEnum.totalSuites.name],
       totalMoteis: json[MotelDataEnum.totalMoteis.name],

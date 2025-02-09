@@ -86,7 +86,7 @@ class MotelItem extends StatelessWidget {
         '9,3km - nossa senhora de lourdes - aparecida de goiânia',
         style: TextStyle(
           color: GOColors.textColor,
-          fontSize: 14,
+          fontSize: 13,
           height: 1,
         ),
       ),
@@ -191,7 +191,7 @@ class MotelItem extends StatelessWidget {
 
   Widget imageAndName({required String imageUrl, int? remainingUnits}) {
     return Card(
-      margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 4),
+      margin: EdgeInsets.symmetric(vertical: 3.0, horizontal: 4),
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),

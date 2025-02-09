@@ -1,15 +1,15 @@
-enum SuiteItemsEnum { nome, descricao, fotos, itens }
+enum SuiteItemsDTOEnum { nome, descricao, fotos, itens }
 
-class SuiteItems {
+class SuiteItemsDTO {
   String? nome;
 
-  SuiteItems({this.nome});
+  SuiteItemsDTO({this.nome});
 
-  SuiteItems.fromJson(Map<String, dynamic> json) {
-    nome = json[SuiteItemsEnum.nome.name];
+  SuiteItemsDTO.fromJson(Map<String, dynamic> json) {
+    nome = json[SuiteItemsDTOEnum.nome.name];
   }
 
   Map<String, dynamic> toJson() {
-    return {SuiteItemsEnum.nome.name: nome};
+    return {SuiteItemsDTOEnum.nome.name: nome};
   }
 }

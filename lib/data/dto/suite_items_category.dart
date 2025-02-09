@@ -1,22 +1,22 @@
-enum SuiteItemsCategoryEnum { nome, icone }
+enum SuiteItemsCategoryDTOEnum { nome, icone }
 
-class SuiteCategoriaItems {
+class SuiteCategoriaItemsDTO {
   String? nome;
   String? icone;
 
-  SuiteCategoriaItems({this.nome, this.icone});
+  SuiteCategoriaItemsDTO({this.nome, this.icone});
 
-  factory SuiteCategoriaItems.fromJson(Map<String, dynamic> json) {
-    return SuiteCategoriaItems(
-      icone: json[SuiteItemsCategoryEnum.icone.name],
-      nome: json[SuiteItemsCategoryEnum.nome.name],
+  factory SuiteCategoriaItemsDTO.fromJson(Map<String, dynamic> json) {
+    return SuiteCategoriaItemsDTO(
+      icone: json[SuiteItemsCategoryDTOEnum.icone.name],
+      nome: json[SuiteItemsCategoryDTOEnum.nome.name],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      SuiteItemsCategoryEnum.icone.name: icone,
-      SuiteItemsCategoryEnum.nome.name: nome,
+      SuiteItemsCategoryDTOEnum.icone.name: icone,
+      SuiteItemsCategoryDTOEnum.nome.name: nome,
     };
   }
 }
