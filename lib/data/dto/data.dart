@@ -43,7 +43,7 @@ class ResponseData {
 
   Map<String, dynamic> toJson() {
     return {
-      MotelDataEnum.moteis.name: moteis?.map((m) => m.toJson()).toList(),
+      MotelDataEnum.moteis.name: moteis.map((m) => m.toJson()).toList(),
       MotelDataEnum.qtdPorPagina.name: qtdPorPagina,
       MotelDataEnum.totalSuites.name: totalSuites,
       MotelDataEnum.totalMoteis.name: totalMoteis,

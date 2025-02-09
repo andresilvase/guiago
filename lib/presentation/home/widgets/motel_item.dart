@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:guiago/core/domain/motel.dart';
 import 'package:guiago/presentation/theme/app_theme.dart';
 
 class MotelItem extends StatelessWidget {
-  const MotelItem({super.key});
+  const MotelItem({super.key, this.motel});
+
+  final Motel? motel;
 
   @override
   Widget build(BuildContext context) {

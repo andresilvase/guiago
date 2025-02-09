@@ -1,44 +1,19 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:guiago/core/domain/motel.dart';
+import 'package:guiago/core/providers/app_providers.dart';
 import 'package:guiago/core/repositories/repository.dart';
 
-class HomeState {
-  List<Motel> motelList = [];
-  bool isLoading = false;
-  bool isError = false;
+class HomeViewModel extends StateNotifier<List<Motel>> {
+  HomeViewModel({required this.ref, required this.repository}) : super([]);
 
-  void loading() {
-    isLoading = true;
-    isError = false;
-  }
-
-  void loaded(List<Motel> motelList) {
-    this.motelList = motelList;
-    isLoading = false;
-    isError = false;
-  }
-
-  void error() {
-    isLoading = false;
-    isError = true;
-  }
-
-  void clear() {
-    motelList = [];
-    isLoading = false;
-    isError = false;
-  }
-}
-
-class HomeViewModel {
   final Repository repository;
-  final HomeState state;
-
-  HomeViewModel({required this.repository, required this.state});
+  Ref ref;
 
   Future<void> fetchData() async {
-    state.loading();
-    final response = await repository.getMotelList(true);
-    state.loaded(response);
-    return;
+    final hasInternet = ref.read(appStateProvider).hasInternetConnection;
+
+    final motelList = await repository.getMotelList(hasInternet);
+
+    state = motelList;
   }
 }

@@ -1,15 +1,11 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 class Utils {
-  static void hasInternet() async {
-    Connectivity().onConnectivityChanged.listen((connectivityResult) {
-      if (connectivityResult.contains(ConnectivityResult.wifi) ||
-          connectivityResult.contains(ConnectivityResult.mobile) ||
-          connectivityResult.contains(ConnectivityResult.ethernet)) {
-        // return true;
-      } else {
-        // return false;
-      }
-    });
+  static bool hasInternet(List<ConnectivityResult>? connectivityResult) {
+    if (connectivityResult == null) {
+      return false;
+    }
+    return connectivityResult.contains(ConnectivityResult.wifi) ||
+        connectivityResult.contains(ConnectivityResult.mobile);
   }
 }
