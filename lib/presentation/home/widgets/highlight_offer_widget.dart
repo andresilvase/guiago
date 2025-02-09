@@ -80,7 +80,7 @@ class HighlightOfferWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
-      color: GOColors.whiteColor,
+      color: GOColors.white,
       elevation: 0.1,
       child: child,
     );
@@ -151,6 +151,7 @@ class HighlightOfferWidget extends StatelessWidget {
           fontWeight: FontWeight.w600,
           color: GOColors.textColor,
           fontSize: 16,
+          height: 1,
         ),
         textAlign: TextAlign.left,
       ),
@@ -165,6 +166,7 @@ class HighlightOfferWidget extends StatelessWidget {
         style: TextStyle(
           color: GOColors.textColor,
           fontSize: 11,
+          height: 1,
         ),
         overflow: TextOverflow.clip,
       ),
@@ -174,7 +176,7 @@ class HighlightOfferWidget extends StatelessWidget {
   Container offerDiscount({required double discount}) {
     return Container(
       alignment: Alignment.centerLeft,
-      padding: const EdgeInsets.only(left: 26.0, top: 8.0, bottom: 4.0),
+      padding: const EdgeInsets.only(left: 26.0, top: 12.0, bottom: 4.0),
       child: Text(
         "${(discount * 100).toStringAsFixed(0)} % de desconto",
         style: TextStyle(
@@ -220,7 +222,7 @@ class HighlightOfferWidget extends StatelessWidget {
                 Text(
                   "reservar",
                   style: TextStyle(
-                    color: GOColors.whiteColor,
+                    color: GOColors.white,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -229,7 +231,7 @@ class HighlightOfferWidget extends StatelessWidget {
             ),
             Icon(
               Icons.arrow_forward_ios_rounded,
-              color: GOColors.whiteColor,
+              color: GOColors.white,
               size: 12,
             ),
           ],

@@ -20,7 +20,7 @@ class HighlightOffer {
         imageUrl: "https://cdn.guiademoteis.com.br/imagens/suites/big/3148_big_9827_1.jpg",
         description: "nossa senhora de lourdes - aparecida de goiânia",
         minPrice: 81.18,
-        title: "motel savanas",
+        title: "mont blanc motel",
       );
 
       final HighlightOffer offer2 = HighlightOffer(

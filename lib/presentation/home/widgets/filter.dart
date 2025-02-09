@@ -14,13 +14,12 @@ class _FilterList extends SliverPersistentHeaderDelegate {
       padding: const EdgeInsets.only(left: 8),
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        border: Border.fromBorderSide(
-          BorderSide(
+        border: Border(
+          bottom: BorderSide(
             color: GOColors.dotsIndicatorColor.withValues(alpha: 0.4),
-            width: 1,
           ),
         ),
-        color: GOColors.whiteColor,
+        color: GOColors.white,
       ),
       child: child,
     );
@@ -48,13 +47,13 @@ class _FilterList extends SliverPersistentHeaderDelegate {
         border: Border.all(
           color: GOColors.dotsIndicatorColor.withValues(alpha: 0.4),
         ),
-        color: isSelected ? GOColors.primaryColor : GOColors.whiteColor,
+        color: isSelected ? GOColors.primaryColor : GOColors.white,
       ),
       width: 80,
       child: Text(
         'filtros',
         style: TextStyle(
-          color: isSelected ? GOColors.whiteColor : GOColors.textColor,
+          color: isSelected ? GOColors.white : GOColors.textColor,
           fontWeight: FontWeight.w600,
         ),
       ),
@@ -82,7 +81,7 @@ class _FilterList extends SliverPersistentHeaderDelegate {
               border: Border.all(
                 color: GOColors.dotsIndicatorColor.withValues(alpha: 0.4),
               ),
-              color: GOColors.whiteColor,
+              color: GOColors.white,
             ),
             padding: EdgeInsets.symmetric(vertical: 6),
             width: 80,
@@ -125,7 +124,7 @@ class _FilterList extends SliverPersistentHeaderDelegate {
         child: Text(
           '1',
           style: TextStyle(
-            color: GOColors.whiteColor,
+            color: GOColors.white,
             fontSize: 10,
           ),
         ),

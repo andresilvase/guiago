@@ -29,14 +29,14 @@ class Header extends StatelessWidget {
   Widget drawerMenu() {
     return IconButton(
       padding: EdgeInsets.zero,
-      icon: Icon(Icons.menu, color: GOColors.whiteColor),
+      icon: Icon(Icons.menu, color: GOColors.white),
       onPressed: () {},
     );
   }
 
   Widget search() {
     return IconButton(
-      icon: Icon(Icons.search, color: GOColors.whiteColor),
+      icon: Icon(Icons.search, color: GOColors.white),
       padding: EdgeInsets.zero,
       onPressed: () {},
     );

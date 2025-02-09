@@ -28,7 +28,7 @@ class Home extends StatelessWidget {
     return NestedScrollView(
       headerSliverBuilder: (_, __) {
         return [
-          // HighlightOfferWidget(offers: HighlightOffer.list()),
+          HighlightOfferWidget(offers: HighlightOffer.list()),
           Filter(),
         ];
       },

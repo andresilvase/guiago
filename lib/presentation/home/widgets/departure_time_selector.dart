@@ -43,7 +43,7 @@ class DepartureTimeSelector extends StatelessWidget {
   }) {
     return Container(
       decoration: BoxDecoration(
-        color: isSelected ? GOColors.whiteColor : null,
+        color: isSelected ? GOColors.white : null,
         borderRadius: BorderRadius.circular(24),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 8),
@@ -55,13 +55,13 @@ class DepartureTimeSelector extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: isSelected ? GOColors.primaryColor : GOColors.whiteColor,
+            color: isSelected ? GOColors.primaryColor : GOColors.white,
             size: 16,
           ),
           Text(
             title,
             style: TextStyle(
-              color: isSelected ? Colors.black : GOColors.whiteColor,
+              color: isSelected ? GOColors.black : GOColors.white,
               fontWeight: FontWeight.w600,
               fontSize: 16,
             ),

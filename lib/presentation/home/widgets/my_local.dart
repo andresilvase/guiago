@@ -17,13 +17,13 @@ class MyLocal extends StatelessWidget {
               'minha localização',
               style: TextStyle(
                 fontWeight: FontWeight.w600,
-                color: GOColors.whiteColor,
+                color: GOColors.white,
                 fontSize: 14,
               ),
             ),
             Icon(
               Icons.keyboard_arrow_down_rounded,
-              color: GOColors.whiteColor,
+              color: GOColors.white,
             )
           ],
         ),
