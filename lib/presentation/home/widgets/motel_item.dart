@@ -121,7 +121,7 @@ class MotelItem extends StatelessWidget {
                   size: 13,
                 ),
                 Text(
-                  '4.3',
+                  motel.media.toString(),
                   style: TextStyle(
                     color: GOColors.black,
                     fontWeight: FontWeight.w600,
@@ -181,7 +181,10 @@ class MotelItem extends StatelessWidget {
       width: Get.width,
       child: Column(
         children: [
-          imageAndName(imageUrl: suite.fotos?.first ?? ''),
+          imageAndName(
+            imageUrl: suite.fotos?.first ?? '',
+            name: suite.nome ?? '',
+          ),
           items(suite.categoriaItens),
           timeAndPrice(),
         ],
@@ -189,7 +192,7 @@ class MotelItem extends StatelessWidget {
     );
   }
 
-  Widget imageAndName({required String imageUrl, int? remainingUnits}) {
+  Widget imageAndName({required String imageUrl, required String name, int? remainingUnits}) {
     return Card(
       margin: EdgeInsets.symmetric(vertical: 3.0, horizontal: 4),
       elevation: 0,
@@ -206,11 +209,12 @@ class MotelItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'suíte soft',
+                  name,
                   style: TextStyle(
                     color: GOColors.textColor,
                     fontSize: 24,
                   ),
+                  textAlign: TextAlign.center,
                 ),
                 Visibility(
                   visible: remainingUnits != null,
