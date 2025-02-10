@@ -36,7 +36,7 @@ final repositoryProvider = Provider<Repository>((ref) {
 
 final homeViewModelProvider = StateNotifierProvider<HomeViewModel, HomeState>((ref) {
   return HomeViewModel(
+    hasInternet: ref.read(appStateProvider).hasInternetConnection,
     repository: ref.read(repositoryProvider),
-    ref: ref,
   );
 });

@@ -1,17 +1,14 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:guiago/core/providers/app_providers.dart';
 import 'package:guiago/core/repositories/repository.dart';
 import 'package:guiago/presentation/home/view_model/home_state.dart';
 
 class HomeViewModel extends StateNotifier<HomeState> {
-  HomeViewModel({required this.ref, required this.repository}) : super(HomeState());
+  HomeViewModel({required this.hasInternet, required this.repository}) : super(HomeState());
 
   final Repository repository;
-  Ref ref;
+  bool hasInternet;
 
   Future<void> fetchData() async {
-    final hasInternet = ref.read(appStateProvider).hasInternetConnection;
-
     final motelList = await repository.getMotelList(hasInternet);
 
     state = state.copyWith(motelList: motelList);

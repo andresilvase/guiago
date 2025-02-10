@@ -3,10 +3,12 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i6;
+import 'dart:async' as _i7;
 
+import 'package:guiago/core/domain/motel.dart' as _i9;
+import 'package:guiago/core/repositories/repository.dart' as _i8;
 import 'package:guiago/core/services/api_service.dart' as _i2;
-import 'package:guiago/data/datasource/local.dart' as _i7;
+import 'package:guiago/data/datasource/local.dart' as _i6;
 import 'package:guiago/data/datasource/remote.dart' as _i5;
 import 'package:guiago/data/dto/response.dart' as _i3;
 import 'package:guiago/data/interfaces/local_storage.dart' as _i4;
@@ -41,6 +43,18 @@ class _FakeLocalStorage_2 extends _i1.SmartFake implements _i4.LocalStorage {
     : super(parent, parentInvocation);
 }
 
+class _FakeRemoteDataSource_3 extends _i1.SmartFake
+    implements _i5.RemoteDataSource {
+  _FakeRemoteDataSource_3(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeLocalDataSource_4 extends _i1.SmartFake
+    implements _i6.LocalDataSource {
+  _FakeLocalDataSource_4(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
 /// A class which mocks [RemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -61,20 +75,20 @@ class MockRemoteDataSource extends _i1.Mock implements _i5.RemoteDataSource {
           as _i2.APIService);
 
   @override
-  _i6.Future<_i3.Response> getData() =>
+  _i7.Future<_i3.Response> getData() =>
       (super.noSuchMethod(
             Invocation.method(#getData, []),
-            returnValue: _i6.Future<_i3.Response>.value(
+            returnValue: _i7.Future<_i3.Response>.value(
               _FakeResponse_1(this, Invocation.method(#getData, [])),
             ),
           )
-          as _i6.Future<_i3.Response>);
+          as _i7.Future<_i3.Response>);
 }
 
 /// A class which mocks [LocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLocalDataSource extends _i1.Mock implements _i7.LocalDataSource {
+class MockLocalDataSource extends _i1.Mock implements _i6.LocalDataSource {
   MockLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
@@ -91,21 +105,60 @@ class MockLocalDataSource extends _i1.Mock implements _i7.LocalDataSource {
           as _i4.LocalStorage);
 
   @override
-  _i6.Future<_i3.Response> getData() =>
+  _i7.Future<_i3.Response> getData() =>
       (super.noSuchMethod(
             Invocation.method(#getData, []),
-            returnValue: _i6.Future<_i3.Response>.value(
+            returnValue: _i7.Future<_i3.Response>.value(
               _FakeResponse_1(this, Invocation.method(#getData, [])),
             ),
           )
-          as _i6.Future<_i3.Response>);
+          as _i7.Future<_i3.Response>);
 
   @override
-  _i6.Future<void> saveData(_i3.Response? response) =>
+  _i7.Future<void> saveData(_i3.Response? response) =>
       (super.noSuchMethod(
             Invocation.method(#saveData, [response]),
-            returnValue: _i6.Future<void>.value(),
-            returnValueForMissingStub: _i6.Future<void>.value(),
+            returnValue: _i7.Future<void>.value(),
+            returnValueForMissingStub: _i7.Future<void>.value(),
           )
-          as _i6.Future<void>);
+          as _i7.Future<void>);
+}
+
+/// A class which mocks [Repository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRepository extends _i1.Mock implements _i8.Repository {
+  MockRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.RemoteDataSource get remoteDataSource =>
+      (super.noSuchMethod(
+            Invocation.getter(#remoteDataSource),
+            returnValue: _FakeRemoteDataSource_3(
+              this,
+              Invocation.getter(#remoteDataSource),
+            ),
+          )
+          as _i5.RemoteDataSource);
+
+  @override
+  _i6.LocalDataSource get localDataSource =>
+      (super.noSuchMethod(
+            Invocation.getter(#localDataSource),
+            returnValue: _FakeLocalDataSource_4(
+              this,
+              Invocation.getter(#localDataSource),
+            ),
+          )
+          as _i6.LocalDataSource);
+
+  @override
+  _i7.Future<List<_i9.Motel>> getMotelList(bool? hasInternet) =>
+      (super.noSuchMethod(
+            Invocation.method(#getMotelList, [hasInternet]),
+            returnValue: _i7.Future<List<_i9.Motel>>.value(<_i9.Motel>[]),
+          )
+          as _i7.Future<List<_i9.Motel>>);
 }
