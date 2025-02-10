@@ -20,6 +20,7 @@ class Repository {
 
       if (hasInternet) {
         response = await remoteDataSource.getData();
+        await localDataSource.saveData(response);
       } else {
         response = await localDataSource.getData();
       }

@@ -21,4 +21,12 @@ class LocalDataSource implements DataSource {
       throw DataSourceException(message: e.toString(), dataSource: 'LocalDataSource');
     }
   }
+
+  Future<void> saveData(Response response) async {
+    try {
+      await localStorage.put(Constants.storageKey, response.toJson());
+    } on Exception catch (e) {
+      throw DataSourceException(message: e.toString(), dataSource: 'LocalDataSource');
+    }
+  }
 }
