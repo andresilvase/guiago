@@ -5,7 +5,7 @@ import 'package:guiago/data/mappers/suite_mapper.dart';
 class MotelMapper {
   static Motel fromDTO(MotelDTO dto) {
     return Motel(
-      suites: dto.suites?.map((s) => SuitesMapper.fromDTO(s)).toList(),
+      suites: dto.suites.map((s) => SuitesMapper.fromDTO(s)).toList(),
       qtdAvaliacoes: dto.qtdAvaliacoes,
       qtdFavoritos: dto.qtdFavoritos,
       distancia: dto.distancia,

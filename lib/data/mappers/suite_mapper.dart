@@ -18,15 +18,15 @@ class SuitesMapper {
     );
   }
 
-  static SuiteCategoriaItems suiteCategoriaItemsFromDTO(SuiteCategoriaItemsDTO dto) {
-    return SuiteCategoriaItems(
+  static SuiteCategoriaItem suiteCategoriaItemsFromDTO(SuiteCategoriaItemsDTO dto) {
+    return SuiteCategoriaItem(
       nome: dto.nome,
       icone: dto.icone,
     );
   }
 
-  static SuiteItems suiteItemsFromDTO(SuiteItemsDTO dto) {
-    return SuiteItems(
+  static SuiteItem suiteItemsFromDTO(SuiteItemsDTO dto) {
+    return SuiteItem(
       nome: dto.nome,
     );
   }
@@ -60,14 +60,14 @@ class SuitesMapper {
     );
   }
 
-  static SuiteCategoriaItemsDTO suiteCategoriaItemsToDTO(SuiteCategoriaItems domain) {
+  static SuiteCategoriaItemsDTO suiteCategoriaItemsToDTO(SuiteCategoriaItem domain) {
     return SuiteCategoriaItemsDTO(
       nome: domain.nome,
       icone: domain.icone,
     );
   }
 
-  static SuiteItemsDTO suiteItemsToDTO(SuiteItems domain) {
+  static SuiteItemsDTO suiteItemsToDTO(SuiteItem domain) {
     return SuiteItemsDTO(
       nome: domain.nome,
     );

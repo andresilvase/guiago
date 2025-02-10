@@ -4,17 +4,17 @@ class SuiteDiscount {
   SuiteDiscount({this.desconto});
 }
 
-class SuiteCategoriaItems {
+class SuiteCategoriaItem {
   String? nome;
   String? icone;
 
-  SuiteCategoriaItems({this.nome, this.icone});
+  SuiteCategoriaItem({this.nome, this.icone});
 }
 
-class SuiteItems {
+class SuiteItem {
   String? nome;
 
-  SuiteItems({this.nome});
+  SuiteItem({this.nome});
 }
 
 class SuitePeriods {
@@ -36,10 +36,10 @@ class SuitePeriods {
 }
 
 class Suites {
-  List<SuiteCategoriaItems>? categoriaItens;
+  List<SuiteCategoriaItem>? categoriaItens;
   bool? exibirQtdDisponiveis;
   List<SuitePeriods>? periodos;
-  List<SuiteItems>? itens;
+  List<SuiteItem>? itens;
   List<String>? fotos;
   String? nome;
   int? qtd;

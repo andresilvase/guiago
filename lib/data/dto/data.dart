@@ -4,12 +4,12 @@ enum MotelDataEnum { qtdPorPagina, totalSuites, totalMoteis, maxPaginas, moteis,
 
 class ResponseData {
   List<MotelDTO> moteis;
-  int? qtdPorPagina;
-  int? totalSuites;
-  int? totalMoteis;
-  int? maxPaginas;
-  int? pagina;
-  int? raio;
+  num? qtdPorPagina;
+  num? totalSuites;
+  num? totalMoteis;
+  num? maxPaginas;
+  num? pagina;
+  num? raio;
 
   ResponseData({
     this.moteis = const [],

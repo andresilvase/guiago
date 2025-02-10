@@ -11,9 +11,9 @@ class APIResponse {
 
   factory APIResponse.fromJson(Map<String, dynamic> json) {
     return APIResponse(
+      data: ResponseData.fromJson(json[PayloadResponseEnum.data.name]),
       mensagem: json[PayloadResponseEnum.mensagem.name],
       sucesso: json[PayloadResponseEnum.sucesso.name],
-      data: json[PayloadResponseEnum.data.name],
     );
   }
 

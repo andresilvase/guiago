@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:guiago/core/domain/motel.dart';
+import 'package:guiago/core/domain/suites.dart';
 import 'package:guiago/presentation/theme/app_theme.dart';
 
 class MotelItem extends StatelessWidget {
-  const MotelItem({super.key, this.motel});
+  const MotelItem({super.key, required this.motel});
 
-  final Motel? motel;
+  final Motel motel;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +48,7 @@ class MotelItem extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: NetworkImage(
-              'https://cdn.guiademoteis.com.br/imagens/suites/big/3148_big_9827_1.jpg',
+              motel.logo ?? '',
             ),
             fit: BoxFit.cover,
           ),
@@ -73,7 +74,7 @@ class MotelItem extends StatelessWidget {
 
   Text motelName() {
     return Text(
-      'motel savanas',
+      motel.fantasia ?? '',
       style: TextStyle(
         fontSize: 26,
         color: GOColors.textColor,
@@ -86,7 +87,7 @@ class MotelItem extends StatelessWidget {
     return SizedBox(
       width: 200,
       child: Text(
-        '9,3km - nossa senhora de lourdes - aparecida de goiânia',
+        motel.bairro ?? '',
         style: TextStyle(
           color: GOColors.textColor,
           fontSize: 13,
@@ -132,7 +133,7 @@ class MotelItem extends StatelessWidget {
             ),
           ),
           Text(
-            '102 avaliações',
+            '${motel.qtdAvaliacoes} avaliações',
             style: TextStyle(
               color: GOColors.black,
               fontWeight: FontWeight.w500,
@@ -165,16 +166,12 @@ class MotelItem extends StatelessWidget {
     return Expanded(
       child: ListView(
         scrollDirection: Axis.horizontal,
-        children: [
-          suiteDetails(),
-          suiteDetails(),
-          suiteDetails(),
-        ],
+        children: motel.suites.map((suite) => suiteDetails(suite)).toList(),
       ),
     );
   }
 
-  Widget suiteDetails() {
+  Widget suiteDetails(Suites suite) {
     return Container(
       padding: EdgeInsets.all(8.0),
       alignment: Alignment.center,
@@ -184,8 +181,8 @@ class MotelItem extends StatelessWidget {
       width: Get.width,
       child: Column(
         children: [
-          imageAndName(imageUrl: 'https://cdn.guiademoteis.com.br/imagens/suites/big/3148_big_9827_1.jpg'),
-          items(),
+          imageAndName(imageUrl: suite.fotos?.first ?? ''),
+          items(suite.categoriaItens),
           timeAndPrice(),
         ],
       ),
@@ -265,7 +262,7 @@ class MotelItem extends StatelessWidget {
     );
   }
 
-  Widget items() {
+  Widget items(List<SuiteCategoriaItem>? items) {
     return Card(
       margin: EdgeInsets.symmetric(vertical: 1.5, horizontal: 4),
       elevation: 0,
@@ -277,29 +274,35 @@ class MotelItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            item(Icons.garage),
-            item(Icons.kitchen),
-            item(Icons.ac_unit),
-            item(Icons.wifi),
-            seeAllItems(),
-          ],
+          children: items != null
+              ? List.generate(
+                  5,
+                  (index) {
+                    if (index == 4) {
+                      return seeAllItems();
+                    }
+                    return item(items[index]);
+                  },
+                )
+              : [],
         ),
       ),
     );
   }
 
-  Widget item(IconData icon) {
+  Widget item(SuiteCategoriaItem item) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
         color: GOColors.grey2,
       ),
       padding: EdgeInsets.all(8),
-      child: Icon(
-        icon,
-        color: GOColors.grey3,
-        size: 32,
+      child: SizedBox(
+        width: 32,
+        child: Image.network(
+          item.icone ?? '',
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }

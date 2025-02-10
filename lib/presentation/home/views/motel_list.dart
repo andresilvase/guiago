@@ -33,9 +33,10 @@ class MotelList extends ConsumerWidget {
 
   Widget buildList(List<Motel> motelList) {
     return ListView.builder(
-      itemCount: 10,
+      itemCount: motelList.length,
       itemBuilder: (context, index) {
-        return MotelItem();
+        final motel = motelList[index];
+        return MotelItem(motel: motel);
       },
     );
   }

@@ -48,8 +48,8 @@ class SuitesDTO {
 
     return SuitesDTO(
       exibirQtdDisponiveis: json[SuitesDTOEnum.exibirQtdDisponiveis.name],
+      fotos: List.from(json[SuitesDTOEnum.fotos.name]),
       categoriaItens: newCategoriaItensList,
-      fotos: json[SuitesDTOEnum.fotos.name],
       nome: json[SuitesDTOEnum.nome.name],
       qtd: json[SuitesDTOEnum.qtd.name],
       periodos: newPeriodosList,

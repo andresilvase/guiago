@@ -3,7 +3,7 @@ import 'package:guiago/data/dto/suites.dart';
 enum MotelDTOEnum { fantasia, logo, bairro, distancia, qtdFavoritos, suites, qtdAvaliacoes, media }
 
 class MotelDTO {
-  List<SuitesDTO>? suites;
+  List<SuitesDTO> suites;
   int? qtdAvaliacoes;
   double? distancia;
   int? qtdFavoritos;
@@ -13,12 +13,12 @@ class MotelDTO {
   String? logo;
 
   MotelDTO({
+    this.suites = const [],
     this.qtdAvaliacoes,
     this.qtdFavoritos,
     this.distancia,
     this.fantasia,
     this.bairro,
-    this.suites,
     this.media,
     this.logo,
   });
@@ -46,7 +46,7 @@ class MotelDTO {
 
   Map<String, dynamic> toJson() {
     return {
-      MotelDTOEnum.suites.name: suites?.map((s) => s.toJson()).toList(),
+      MotelDTOEnum.suites.name: suites.map((s) => s.toJson()).toList(),
       MotelDTOEnum.qtdAvaliacoes.name: qtdAvaliacoes,
       MotelDTOEnum.qtdFavoritos.name: qtdFavoritos,
       MotelDTOEnum.distancia.name: distancia,

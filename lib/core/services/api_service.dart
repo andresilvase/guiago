@@ -16,7 +16,8 @@ class APIService {
 
   Map<String, dynamic> _handleResponse(http.Response response) {
     if (response.statusCode >= 200 && response.statusCode < 300) {
-      return jsonDecode(response.body);
+      final decodedBody = utf8.decode(response.bodyBytes);
+      return jsonDecode(decodedBody);
     } else {
       throw APIException(
         statusCode: response.statusCode,
