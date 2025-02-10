@@ -49,9 +49,7 @@ class MotelItem extends StatelessWidget {
         height: 40,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage(
-              motel.logo ?? '',
-            ),
+            image: CachedNetworkImageProvider(motel.logo ?? ''),
             fit: BoxFit.cover,
           ),
         ),
@@ -259,9 +257,7 @@ class MotelItem extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         image: DecorationImage(
-          image: NetworkImage(
-            imageUrl,
-          ),
+          image: CachedNetworkImageProvider(imageUrl),
           fit: BoxFit.cover,
         ),
       ),
@@ -307,10 +303,8 @@ class MotelItem extends StatelessWidget {
         width: 32,
         child: CachedNetworkImage(
           imageUrl: item.icone ?? '',
-          progressIndicatorBuilder: (context, url, downloadProgress) =>
-              CircularProgressIndicator(value: downloadProgress.progress),
+          placeholder: (context, url) => CircularProgressIndicator(),
           errorWidget: (context, url, error) => Icon(Icons.error),
-          fit: BoxFit.cover,
         ),
       ),
     );

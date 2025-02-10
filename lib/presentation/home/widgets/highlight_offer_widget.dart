@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:guiago/core/domain/highlight_offer.dart';
 import 'package:guiago/presentation/theme/app_theme.dart';
@@ -94,7 +95,7 @@ class HighlightOfferWidget extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         image: DecorationImage(
-          image: NetworkImage(imageUrl),
+          image: CachedNetworkImageProvider(imageUrl),
           fit: BoxFit.cover,
         ),
         color: Colors.grey,
