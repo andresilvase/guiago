@@ -78,8 +78,9 @@ void main() {
     });
   });
 
-  test('Repository should save  data', () async {
+  test('Repository should save remote data to local data source', () async {
     final response = Response.fromJson(jsonDecodedAPIResponse);
+
     // Arrange
     when(mockRemoteDataSource.getData()).thenAnswer((_) async => response);
 
