@@ -5,9 +5,14 @@ import 'package:guiago/core/providers/app_providers.dart';
 import 'package:guiago/presentation/theme/app_theme.dart';
 import 'package:guiago/presentation/home/views/home.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
+
+  final dir = await getApplicationDocumentsDirectory();
+  Hive.init(dir.path);
 
   runApp(
     ProviderScope(

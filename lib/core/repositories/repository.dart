@@ -1,12 +1,14 @@
 import 'package:guiago/core/domain/motel.dart';
 import 'package:guiago/core/exceptions/api_exception.dart';
+import 'package:guiago/core/exceptions/data_source_exception.dart';
 import 'package:guiago/data/datasource/local.dart';
 import 'package:guiago/data/datasource/remote.dart';
+import 'package:guiago/data/dto/response.dart';
 import 'package:guiago/data/mappers/motel_mapper.dart';
 
 class Repository {
   final RemoteDataSource remoteDataSource;
-  final LocalResponseDataSource localDataSource;
+  final LocalDataSource localDataSource;
 
   Repository({required this.remoteDataSource, required this.localDataSource});
 
@@ -14,21 +16,25 @@ class Repository {
     List<Motel> motelList = [];
 
     try {
-      if (hasInternet) {
-        final response = await remoteDataSource.getData();
+      late Response response;
 
-        if (response.sucesso == true) {
-          for (var m in response.data!.moteis) {
-            motelList.add(MotelMapper.fromDTO(m));
-          }
-        }
+      if (hasInternet) {
+        response = await remoteDataSource.getData();
       } else {
-        // TODO: get data from local
+        response = await localDataSource.getData();
+      }
+
+      if (response.sucesso == true) {
+        for (var m in response.data!.moteis) {
+          motelList.add(MotelMapper.fromDTO(m));
+        }
       }
 
       return motelList;
     } on APIException catch (e) {
-      throw APIException(statusCode: e.statusCode, message: e.message);
+      throw APIException(message: e.message, statusCode: e.statusCode);
+    } on DataSourceException catch (e) {
+      throw DataSourceException(message: e.message, dataSource: e.dataSource);
     }
   }
 }

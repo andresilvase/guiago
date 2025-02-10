@@ -1,27 +1,27 @@
 import 'package:guiago/data/dto/data.dart';
 
-enum PayloadResponseEnum { sucesso, data, mensagem }
+enum ResponseEnum { sucesso, data, mensagem }
 
-class APIResponse {
+class Response {
   ResponseData? data;
   List? mensagem;
   bool? sucesso;
 
-  APIResponse({this.sucesso, this.data, this.mensagem});
+  Response({this.sucesso, this.data, this.mensagem});
 
-  factory APIResponse.fromJson(Map<String, dynamic> json) {
-    return APIResponse(
-      data: ResponseData.fromJson(json[PayloadResponseEnum.data.name]),
-      mensagem: json[PayloadResponseEnum.mensagem.name],
-      sucesso: json[PayloadResponseEnum.sucesso.name],
+  factory Response.fromJson(Map<String, dynamic> json) {
+    return Response(
+      data: ResponseData.fromJson(json[ResponseEnum.data.name]),
+      mensagem: json[ResponseEnum.mensagem.name],
+      sucesso: json[ResponseEnum.sucesso.name],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      PayloadResponseEnum.data.name: data?.toJson(),
-      PayloadResponseEnum.mensagem.name: mensagem,
-      PayloadResponseEnum.sucesso.name: sucesso,
+      ResponseEnum.data.name: data?.toJson(),
+      ResponseEnum.mensagem.name: mensagem,
+      ResponseEnum.sucesso.name: sucesso,
     };
   }
 }

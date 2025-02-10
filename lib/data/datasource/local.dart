@@ -1,13 +1,24 @@
-import 'package:guiago/data/datasource/datasource.dart';
+import 'package:guiago/core/exceptions/data_source_exception.dart';
+import 'package:guiago/core/utils/constants.dart';
+import 'package:guiago/data/interfaces/data_source.dart';
 import 'package:guiago/data/dto/response.dart';
+import 'package:guiago/data/interfaces/local_storage.dart';
 
-class LocalResponseDataSource implements DataSource {
+class LocalDataSource implements DataSource {
+  final LocalStorage localStorage;
+
+  LocalDataSource({required this.localStorage});
+
   @override
-  Future<APIResponse> getData() async {
-    final response = {'local': 'response'};
+  Future<Response> getData() async {
+    try {
+      final response = await localStorage.get(Constants.storageKey);
 
-    final responseData = APIResponse.fromJson(response);
+      final responseData = Response.fromJson(response);
 
-    return responseData;
+      return responseData;
+    } on Exception catch (e) {
+      throw DataSourceException(message: e.toString(), dataSource: 'LocalDataSource');
+    }
   }
 }

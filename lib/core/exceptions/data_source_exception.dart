@@ -1,9 +1,9 @@
-class DataSourceExceptions implements Exception {
+class DataSourceException implements Exception {
   final String dataSource;
   final String message;
 
-  DataSourceExceptions({required this.dataSource, required this.message});
+  DataSourceException({required this.dataSource, required this.message});
 
   @override
-  String toString() => 'DataSourceExceptions: $message.';
+  String toString() => 'DataSourceException: $message.';
 }

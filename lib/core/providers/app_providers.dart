@@ -4,6 +4,7 @@ import 'package:guiago/core/domain/app_state.dart';
 import 'package:guiago/core/domain/motel.dart';
 import 'package:guiago/core/repositories/repository.dart';
 import 'package:guiago/core/services/api_service.dart';
+import 'package:guiago/core/services/local_storage.dart';
 import 'package:guiago/core/utils/utils.dart';
 import 'package:guiago/data/datasource/local.dart';
 import 'package:guiago/data/datasource/remote.dart';
@@ -29,7 +30,7 @@ final apiServiceProvider = Provider<APIService>((ref) {
 final repositoryProvider = Provider<Repository>((ref) {
   return Repository(
     remoteDataSource: RemoteDataSource(apiService: ref.read(apiServiceProvider)),
-    localDataSource: LocalResponseDataSource(),
+    localDataSource: LocalDataSource(localStorage: HiveStorage.instance),
   );
 });
 
