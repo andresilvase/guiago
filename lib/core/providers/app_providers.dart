@@ -9,7 +9,7 @@ import 'package:guiago/data/datasource/local.dart';
 import 'package:guiago/data/datasource/remote.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:guiago/presentation/home/viewmodel/home_view_model.dart';
+import 'package:guiago/presentation/home/view_model/home_view_model.dart';
 
 final connectivityProvider = StreamProvider<List<ConnectivityResult>>((ref) {
   return Connectivity().onConnectivityChanged.map((event) => event);
