@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:guiago/core/domain/motel.dart';
@@ -304,8 +305,11 @@ class MotelItem extends StatelessWidget {
       padding: EdgeInsets.all(8),
       child: SizedBox(
         width: 32,
-        child: Image.network(
-          item.icone ?? '',
+        child: CachedNetworkImage(
+          imageUrl: item.icone ?? '',
+          progressIndicatorBuilder: (context, url, downloadProgress) =>
+              CircularProgressIndicator(value: downloadProgress.progress),
+          errorWidget: (context, url, error) => Icon(Icons.error),
           fit: BoxFit.cover,
         ),
       ),

@@ -38,11 +38,21 @@ class _FilterList extends SliverPersistentHeaderDelegate {
   }
 
   List<String> filterOptions = [
-    'All',
-    'Free Wifi',
-    'Free Breakfast',
-    'Free Parking',
-    'Free Cancellation',
+    'com desconto',
+    'disponíveis',
+    'hidro',
+    'piscina',
+    'sauna',
+    'ofurô',
+    'decoração erótica',
+    'decoração temática',
+    'cadeira erótica',
+    'pista de dança',
+    'garagem privativa',
+    'frigobar',
+    'internet wi-fi',
+    'suíte para festas',
+    'suíte com acessibilidade',
   ];
 
   Widget filterList() {
@@ -84,7 +94,8 @@ class _FilterList extends SliverPersistentHeaderDelegate {
             filterOption,
             style: TextStyle(
               color: isSelected ? GOColors.white : GOColors.textColor,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w500,
+              fontSize: 12,
             ),
           ),
         ),
@@ -122,15 +133,16 @@ class _FilterList extends SliverPersistentHeaderDelegate {
               spacing: 4,
               children: [
                 Icon(
-                  color: GOColors.textColor,
+                  color: GOColors.dotsIndicatorColor,
                   Icons.tune,
                   size: 16,
                 ),
                 Text(
                   'filtros',
                   style: TextStyle(
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w500,
                     color: GOColors.textColor,
+                    fontSize: 12,
                   ),
                 ),
               ],
