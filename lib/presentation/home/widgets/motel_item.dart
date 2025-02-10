@@ -14,7 +14,7 @@ class MotelItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: GOColors.grey2,
-      height: Get.height * .98,
+      height: Get.height * .96,
       child: Column(
         children: [
           header(),

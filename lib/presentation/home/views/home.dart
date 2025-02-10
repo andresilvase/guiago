@@ -12,7 +12,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Header(onDepartureTimeChange: () {}),
+        Header(),
         SizedBox(height: 16),
         Expanded(
           child: ClipRRect(

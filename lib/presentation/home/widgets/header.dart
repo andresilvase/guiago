@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:guiago/core/providers/app_providers.dart';
 import 'package:guiago/presentation/theme/app_theme.dart';
 import 'package:guiago/presentation/home/widgets/departure_time_selector.dart';
 import 'package:guiago/presentation/home/widgets/my_local.dart';
 
-class Header extends StatelessWidget {
-  const Header({super.key, this.onDepartureTimeChange});
-
-  final VoidCallback? onDepartureTimeChange;
+class Header extends ConsumerWidget {
+  const Header({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       spacing: 16,
       children: [
@@ -17,7 +17,10 @@ class Header extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             drawerMenu(),
-            DepartureTimeSelector(onDepartureTimeChange: onDepartureTimeChange),
+            DepartureTimeSelector(
+              onDepartureTimeChange: ref.read(homeViewModelProvider.notifier).setDepartureOption,
+              departureOption: ref.watch(homeViewModelProvider).departureOption,
+            ),
             search(),
           ],
         ),

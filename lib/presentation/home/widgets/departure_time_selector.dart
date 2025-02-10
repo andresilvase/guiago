@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:guiago/presentation/theme/app_theme.dart';
 
 class DepartureTimeSelector extends StatelessWidget {
-  const DepartureTimeSelector({super.key, this.onDepartureTimeChange});
+  const DepartureTimeSelector({super.key, this.onDepartureTimeChange, required this.departureOption});
 
   final VoidCallback? onDepartureTimeChange;
+  final int departureOption;
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +22,14 @@ class DepartureTimeSelector extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             departureTimeSelectorItem(
+              isSelected: departureOption == 0,
               icon: Icons.flash_on_rounded,
               title: "ir agora",
-              isSelected: true,
             ),
             departureTimeSelectorItem(
               icon: Icons.calendar_month_outlined,
+              isSelected: departureOption == 1,
               title: "ir outro dia",
-              isSelected: false,
             ),
           ],
         ),

@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:guiago/core/providers/app_providers.dart';
 import 'package:guiago/presentation/theme/app_theme.dart';
 
 class _FilterList extends SliverPersistentHeaderDelegate {
+  _FilterList({
+    required this.onFilterDeselected,
+    required this.onFilterSelected,
+    required this.selectedFilters,
+  });
+
+  final void Function(String) onFilterDeselected;
+  final void Function(String) onFilterSelected;
+  final List<String> selectedFilters;
+
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return filterContainer(
@@ -25,36 +37,56 @@ class _FilterList extends SliverPersistentHeaderDelegate {
     );
   }
 
+  List<String> filterOptions = [
+    'All',
+    'Free Wifi',
+    'Free Breakfast',
+    'Free Parking',
+    'Free Cancellation',
+  ];
+
   Widget filterList() {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
-      itemCount: 8,
+      itemCount: filterOptions.length + 1,
       itemBuilder: (_, index) {
         if (index == 0) {
           return filterButton();
         }
-        return filterItem();
+        final filterOption = filterOptions[index - 1];
+        return filterItem(filterOption, isSelected: selectedFilters.contains(filterOption));
       },
     );
   }
 
-  Widget filterItem({bool isSelected = true}) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 4),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: GOColors.dotsIndicatorColor.withValues(alpha: 0.4),
+  Widget filterItem(String filterOption, {bool isSelected = true}) {
+    return GestureDetector(
+      onTap: () {
+        if (isSelected) {
+          onFilterDeselected(filterOption);
+        } else {
+          onFilterSelected(filterOption);
+        }
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 4),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+            color: GOColors.dotsIndicatorColor.withValues(alpha: 0.4),
+          ),
+          color: isSelected ? GOColors.primaryColor : GOColors.white,
         ),
-        color: isSelected ? GOColors.primaryColor : GOColors.white,
-      ),
-      width: 80,
-      child: Text(
-        'filtros',
-        style: TextStyle(
-          color: isSelected ? GOColors.white : GOColors.textColor,
-          fontWeight: FontWeight.w600,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Text(
+            filterOption,
+            style: TextStyle(
+              color: isSelected ? GOColors.white : GOColors.textColor,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
         ),
       ),
     );
@@ -65,7 +97,7 @@ class _FilterList extends SliverPersistentHeaderDelegate {
       alignment: Alignment.center,
       children: [
         filterButtonFirstLayer(),
-        circleBadgeFiltersCount(),
+        circleBadgeselectedFiltersCount(),
       ],
     );
   }
@@ -109,23 +141,26 @@ class _FilterList extends SliverPersistentHeaderDelegate {
     );
   }
 
-  Widget circleBadgeFiltersCount() {
-    return Positioned(
-      top: 8,
-      left: 8,
-      child: Container(
-        width: 16,
-        height: 16,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: GOColors.primaryColor,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Text(
-          '1',
-          style: TextStyle(
-            color: GOColors.white,
-            fontSize: 10,
+  Widget circleBadgeselectedFiltersCount() {
+    return Visibility(
+      visible: selectedFilters.isNotEmpty,
+      child: Positioned(
+        top: 8,
+        left: 8,
+        child: Container(
+          width: 16,
+          height: 16,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: GOColors.primaryColor,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Text(
+            selectedFilters.length.toString(),
+            style: TextStyle(
+              color: GOColors.white,
+              fontSize: 10,
+            ),
           ),
         ),
       ),
@@ -142,17 +177,21 @@ class _FilterList extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return false;
+    return true;
   }
 }
 
-class Filter extends StatelessWidget {
+class Filter extends ConsumerWidget {
   const Filter({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SliverPersistentHeader(
-      delegate: _FilterList(),
+      delegate: _FilterList(
+        onFilterDeselected: ref.read(homeViewModelProvider.notifier).removeFilter,
+        onFilterSelected: ref.read(homeViewModelProvider.notifier).addFilter,
+        selectedFilters: ref.watch(homeViewModelProvider).selectedFilters,
+      ),
       floating: false,
       pinned: true,
     );

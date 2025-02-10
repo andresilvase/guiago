@@ -1,7 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:guiago/core/domain/app_state.dart';
-import 'package:guiago/core/domain/motel.dart';
 import 'package:guiago/core/repositories/repository.dart';
 import 'package:guiago/core/services/api_service.dart';
 import 'package:guiago/core/services/local_storage.dart';
@@ -34,7 +33,7 @@ final repositoryProvider = Provider<Repository>((ref) {
   );
 });
 
-final homeViewModelProvider = StateNotifierProvider<HomeViewModel, List<Motel>>((ref) {
+final homeViewModelProvider = StateNotifierProvider<HomeViewModel, HomeState>((ref) {
   return HomeViewModel(
     repository: ref.read(repositoryProvider),
     ref: ref,

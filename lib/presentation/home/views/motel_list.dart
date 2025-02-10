@@ -10,7 +10,7 @@ class MotelList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final homeViewModel = ref.watch(homeViewModelProvider.notifier);
+    final homeViewModel = ref.read(homeViewModelProvider.notifier);
 
     return Container(
       color: GOColors.grey2,
@@ -21,7 +21,7 @@ class MotelList extends ConsumerWidget {
             ConnectionState.waiting => const Center(
                 child: CircularProgressIndicator(),
               ),
-            ConnectionState.done => buildList(ref.watch(homeViewModelProvider)),
+            ConnectionState.done => buildList(ref.read(homeViewModelProvider).motelList),
             _ => const Center(
                 child: Text('Erro ao carregar os dados'),
               ),
