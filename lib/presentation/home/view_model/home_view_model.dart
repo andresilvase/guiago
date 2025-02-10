@@ -1,31 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:guiago/core/domain/motel.dart';
 import 'package:guiago/core/providers/app_providers.dart';
 import 'package:guiago/core/repositories/repository.dart';
-
-class HomeState {
-  final List<String> selectedFilters;
-  final List<Motel> motelList;
-  final int departureOption;
-
-  HomeState({
-    this.selectedFilters = const [],
-    this.motelList = const [],
-    this.departureOption = 0,
-  });
-
-  HomeState copyWith({
-    List<String>? selectedFilters,
-    List<Motel>? motelList,
-    int? departureOption,
-  }) {
-    return HomeState(
-      departureOption: departureOption ?? this.departureOption,
-      selectedFilters: selectedFilters ?? this.selectedFilters,
-      motelList: motelList ?? this.motelList,
-    );
-  }
-}
+import 'package:guiago/presentation/home/view_model/home_state.dart';
 
 class HomeViewModel extends StateNotifier<HomeState> {
   HomeViewModel({required this.ref, required this.repository}) : super(HomeState());

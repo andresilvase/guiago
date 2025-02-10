@@ -7,6 +7,7 @@ import 'package:guiago/core/services/local_storage.dart';
 import 'package:guiago/core/utils/utils.dart';
 import 'package:guiago/data/datasource/local.dart';
 import 'package:guiago/data/datasource/remote.dart';
+import 'package:guiago/presentation/home/view_model/home_state.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:guiago/presentation/home/view_model/home_view_model.dart';
