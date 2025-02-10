@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:guiago/core/domain/motel.dart';
 import 'package:guiago/core/domain/suites.dart';
 import 'package:guiago/presentation/theme/app_theme.dart';
+import 'package:intl/intl.dart';
 
 class MotelItem extends StatelessWidget {
   const MotelItem({super.key, required this.motel});
@@ -13,7 +14,7 @@ class MotelItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: GOColors.grey2,
-      height: Get.height * .97,
+      height: Get.height * .98,
       child: Column(
         children: [
           header(),
@@ -186,7 +187,7 @@ class MotelItem extends StatelessWidget {
             name: suite.nome ?? '',
           ),
           items(suite.categoriaItens),
-          timeAndPrice(),
+          ...suite.periodos.map(timeAndPriceItem),
         ],
       ),
     );
@@ -339,17 +340,7 @@ class MotelItem extends StatelessWidget {
     );
   }
 
-  Widget timeAndPrice() {
-    return Column(
-      children: [
-        timeAndPriceItem(),
-        timeAndPriceItem(),
-        timeAndPriceItem(),
-      ],
-    );
-  }
-
-  Widget timeAndPriceItem() {
+  Widget timeAndPriceItem(SuitePeriod period) {
     return Card(
       margin: EdgeInsets.symmetric(vertical: 2.0, horizontal: 4),
       elevation: 0,
@@ -366,17 +357,21 @@ class MotelItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '3 horas',
+                  period.tempoFormatado ?? '',
                   style: TextStyle(
                     color: GOColors.textColor,
-                    fontSize: 24,
+                    fontSize: 22,
                   ),
                 ),
                 Text(
-                  'R\$ 63,18',
+                  NumberFormat.currency(
+                    locale: 'pt_BR',
+                    symbol: 'R\$',
+                    decimalDigits: 2,
+                  ).format(period.valorTotal),
                   style: TextStyle(
                     color: GOColors.textColor,
-                    fontSize: 24,
+                    fontSize: 22,
                   ),
                 ),
               ],

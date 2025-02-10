@@ -1,11 +1,11 @@
 import 'package:guiago/core/domain/motel.dart';
 import 'package:guiago/core/exceptions/api_exception.dart';
-import 'package:guiago/data/datasource/local_response.dart';
-import 'package:guiago/data/datasource/remote_response.dart';
+import 'package:guiago/data/datasource/local.dart';
+import 'package:guiago/data/datasource/remote.dart';
 import 'package:guiago/data/mappers/motel_mapper.dart';
 
 class Repository {
-  final RemoteResponseDataSource remoteDataSource;
+  final RemoteDataSource remoteDataSource;
   final LocalResponseDataSource localDataSource;
 
   Repository({required this.remoteDataSource, required this.localDataSource});

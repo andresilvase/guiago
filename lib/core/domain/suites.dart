@@ -17,7 +17,7 @@ class SuiteItem {
   SuiteItem({this.nome});
 }
 
-class SuitePeriods {
+class SuitePeriod {
   SuiteDiscount? desconto;
   String? tempoFormatado;
   double? valorTotal;
@@ -25,7 +25,7 @@ class SuitePeriods {
   String? tempo;
   double? valor;
 
-  SuitePeriods({
+  SuitePeriod({
     this.tempoFormatado,
     this.temCortesia,
     this.valorTotal,
@@ -38,18 +38,18 @@ class SuitePeriods {
 class Suites {
   List<SuiteCategoriaItem>? categoriaItens;
   bool? exibirQtdDisponiveis;
-  List<SuitePeriods>? periodos;
-  List<SuiteItem>? itens;
+  List<SuitePeriod> periodos;
+  List<SuiteItem> itens;
   List<String>? fotos;
   String? nome;
   int? qtd;
 
   Suites({
     this.exibirQtdDisponiveis,
+    this.periodos = const [],
+    this.itens = const [],
     this.categoriaItens,
-    this.periodos,
     this.fotos,
-    this.itens,
     this.nome,
     this.qtd,
   });

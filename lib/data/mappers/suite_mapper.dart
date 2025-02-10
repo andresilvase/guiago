@@ -9,8 +9,8 @@ class SuitesMapper {
   static Suites fromDTO(SuitesDTO dto) {
     return Suites(
       categoriaItens: dto.categoriaItens?.map((s) => SuitesMapper.suiteCategoriaItemsFromDTO(s)).toList(),
-      periodos: dto.periodos?.map((s) => SuitesMapper.suitePeriodsFromDTO(s)).toList(),
-      itens: dto.itens?.map((s) => SuitesMapper.suiteItemsFromDTO(s)).toList(),
+      periodos: dto.periodos.map((s) => SuitesMapper.suitePeriodsFromDTO(s)).toList(),
+      itens: dto.itens.map((s) => SuitesMapper.suiteItemsFromDTO(s)).toList(),
       exibirQtdDisponiveis: dto.exibirQtdDisponiveis,
       fotos: dto.fotos,
       nome: dto.nome,
@@ -31,8 +31,8 @@ class SuitesMapper {
     );
   }
 
-  static SuitePeriods suitePeriodsFromDTO(SuitePeriodsDTO dto) {
-    return SuitePeriods(
+  static SuitePeriod suitePeriodsFromDTO(SuitePeriodsDTO dto) {
+    return SuitePeriod(
       desconto: suiteDiscountFromDTO(dto.desconto),
       tempoFormatado: dto.tempoFormatado,
       valorTotal: dto.valorTotal,
@@ -51,8 +51,8 @@ class SuitesMapper {
   static SuitesDTO toDTO(Suites domain) {
     return SuitesDTO(
       categoriaItens: domain.categoriaItens?.map((s) => SuitesMapper.suiteCategoriaItemsToDTO(s)).toList(),
-      periodos: domain.periodos?.map((s) => SuitesMapper.suitePeriodsToDTO(s)).toList(),
-      itens: domain.itens?.map((s) => SuitesMapper.suiteItemsToDTO(s)).toList(),
+      periodos: domain.periodos.map((s) => SuitesMapper.suitePeriodsToDTO(s)).toList(),
+      itens: domain.itens.map((s) => SuitesMapper.suiteItemsToDTO(s)).toList(),
       exibirQtdDisponiveis: domain.exibirQtdDisponiveis,
       fotos: domain.fotos,
       nome: domain.nome,
@@ -73,7 +73,7 @@ class SuitesMapper {
     );
   }
 
-  static SuitePeriodsDTO suitePeriodsToDTO(SuitePeriods domain) {
+  static SuitePeriodsDTO suitePeriodsToDTO(SuitePeriod domain) {
     return SuitePeriodsDTO(
       desconto: suiteDiscountToDTO(domain.desconto),
       tempoFormatado: domain.tempoFormatado,

@@ -5,8 +5,8 @@ import 'package:guiago/core/domain/motel.dart';
 import 'package:guiago/core/repositories/repository.dart';
 import 'package:guiago/core/services/api_service.dart';
 import 'package:guiago/core/utils/utils.dart';
-import 'package:guiago/data/datasource/local_response.dart';
-import 'package:guiago/data/datasource/remote_response.dart';
+import 'package:guiago/data/datasource/local.dart';
+import 'package:guiago/data/datasource/remote.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:guiago/presentation/home/viewmodel/home_view_model.dart';
@@ -28,7 +28,7 @@ final apiServiceProvider = Provider<APIService>((ref) {
 
 final repositoryProvider = Provider<Repository>((ref) {
   return Repository(
-    remoteDataSource: RemoteResponseDataSource(apiService: ref.read(apiServiceProvider)),
+    remoteDataSource: RemoteDataSource(apiService: ref.read(apiServiceProvider)),
     localDataSource: LocalResponseDataSource(),
   );
 });

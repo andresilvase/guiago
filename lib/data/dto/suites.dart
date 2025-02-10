@@ -7,18 +7,18 @@ enum SuitesDTOEnum { nome, qtd, exibirQtdDisponiveis, fotos, itens, categoriaIte
 class SuitesDTO {
   List<SuiteCategoriaItemsDTO>? categoriaItens;
   bool? exibirQtdDisponiveis;
-  List<SuitePeriodsDTO>? periodos;
-  List<SuiteItemsDTO>? itens;
+  List<SuitePeriodsDTO> periodos;
+  List<SuiteItemsDTO> itens;
   List<String>? fotos;
   String? nome;
   int? qtd;
 
   SuitesDTO({
     this.exibirQtdDisponiveis,
+    this.periodos = const [],
+    this.itens = const [],
     this.categoriaItens,
-    this.periodos,
     this.fotos,
-    this.itens,
     this.nome,
     this.qtd,
   });
@@ -60,8 +60,8 @@ class SuitesDTO {
   Map<String, dynamic> toJson() {
     return {
       SuitesDTOEnum.categoriaItens.name: categoriaItens?.map((s) => s.toJson()).toList(),
-      SuitesDTOEnum.periodos.name: periodos?.map((s) => s.toJson()).toList(),
-      SuitesDTOEnum.itens.name: itens?.map((s) => s.toJson()).toList(),
+      SuitesDTOEnum.periodos.name: periodos.map((s) => s.toJson()).toList(),
+      SuitesDTOEnum.itens.name: itens.map((s) => s.toJson()).toList(),
       SuitesDTOEnum.exibirQtdDisponiveis.name: exibirQtdDisponiveis,
       SuitesDTOEnum.fotos.name: fotos,
       SuitesDTOEnum.nome.name: nome,
