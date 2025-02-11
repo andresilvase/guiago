@@ -1,11 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:http/http.dart' as http;
 import 'package:guiago/core/services/api_service.dart';
 import 'package:guiago/core/exceptions/api_exception.dart';
 import 'dart:convert';
-
-class MockClient extends Mock implements http.Client {}
+import 'package:http/http.dart' as http;
+import '../../../mocks/mocks.mocks.dart';
 
 void main() {
   group('APIService', () {
