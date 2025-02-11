@@ -165,6 +165,7 @@ class MotelItem extends StatelessWidget {
   Widget body() {
     return Expanded(
       child: ListView(
+        key: const Key('horizontal_scroll'),
         scrollDirection: Axis.horizontal,
         children: motel.suites.map((suite) => suiteDetails(suite)).toList(),
       ),
@@ -179,7 +180,8 @@ class MotelItem extends StatelessWidget {
         color: GOColors.grey2,
       ),
       width: Get.width,
-      child: Column(
+      child: ListView(
+        key: const Key('vertical_scroll'),
         children: [
           imageAndName(
             imageUrl: suite.fotos?.first ?? '',

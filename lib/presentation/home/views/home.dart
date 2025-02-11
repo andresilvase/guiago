@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guiago/core/domain/highlight_offer.dart';
 import 'package:guiago/presentation/home/views/motel_list.dart';
 import 'package:guiago/presentation/home/widgets/filter.dart';
 import 'package:guiago/presentation/home/widgets/header.dart';
@@ -28,7 +29,24 @@ class Home extends StatelessWidget {
     return NestedScrollView(
       headerSliverBuilder: (_, __) {
         return [
-          HighlightOfferWidget(),
+          HighlightOfferWidget(
+            offers: [
+              HighlightOffer(
+                title: 'Test Offer',
+                description: 'Test Description',
+                imageUrl: 'https://example.com/image.jpg',
+                discountPercentage: 0.2,
+                minPrice: 100.0,
+              ),
+              HighlightOffer(
+                title: 'Test Offer 2',
+                description: 'Test Description 2',
+                imageUrl: 'https://example.com/image2.jpg',
+                discountPercentage: 0.3,
+                minPrice: 150.0,
+              ),
+            ],
+          ),
           Filter(),
         ];
       },

@@ -20,12 +20,12 @@ class HighlightOfferWidget extends StatelessWidget {
         child: Container(
           color: GOColors.grey1,
           padding: EdgeInsets.all(8),
-          height: 224,
+          height: 232,
           child: Center(
             child: Column(
               children: [
                 SizedBox(
-                  height: 184,
+                  height: 192,
                   child: PageView.builder(
                     controller: pageController,
                     itemCount: offers.length,
@@ -196,7 +196,7 @@ class HighlightOfferWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Text(
-        "a partir de ${NumberFormat.currency(locale: "pt_BR").format(minPrice)}",
+        "a partir de ${NumberFormat.currency(locale: "pt_BR", symbol: 'R\$').format(minPrice)}",
         style: TextStyle(
           color: GOColors.textColor,
           fontSize: 11,
