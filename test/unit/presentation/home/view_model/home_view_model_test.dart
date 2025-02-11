@@ -18,7 +18,7 @@ void main() {
     test('fetchData updates state with motelList', () async {
       // Arrange
       final motelList = [Motel(), Motel()];
-      when(mockRepository.getMotelList(true)).thenAnswer((_) async => motelList);
+      when(mockRepository.getMotelList(homeViewModel.hasInternet)).thenAnswer((_) async => motelList);
 
       // Act
       await homeViewModel.fetchData();

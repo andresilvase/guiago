@@ -28,29 +28,31 @@ Override errorConnectivityProviderOverride() {
   );
 }
 
-Override repositoryProviderOverride() {
-  return repositoryProvider.overrideWith(
-    (ref) => Repository(
-      params: RepositoryParams(
-        localDataSource: LocalDataSourceImpl(localStorage: MockLocalStorage()),
-        remoteDataSource: RemoteDataSourceImpl(
-          apiService: APIService(
-            params: APIServiceParams(
-              baseUrl: mockedBaseUrl,
-              client: MockClient(),
+Override repositoryProviderOverride({Repository? repository}) {
+  return repositoryProvider.overrideWith((ref) {
+    return repository ??
+        Repository(
+          params: RepositoryParams(
+            localDataSource: LocalDataSourceImpl(localStorage: MockLocalStorage()),
+            remoteDataSource: RemoteDataSourceImpl(
+              apiService: APIService(
+                params: APIServiceParams(
+                  baseUrl: mockedBaseUrl,
+                  client: MockClient(),
+                ),
+              ),
             ),
           ),
-        ),
-      ),
-    ),
-  );
+        );
+  });
 }
 
-Override homeViewModelProviderOverride() {
-  return homeViewModelProvider.overrideWith(
-    (ref) => HomeViewModel(
-      hasInternet: true,
-      repository: ref.read(repositoryProvider),
-    ),
-  );
+Override homeViewModelProviderOverride({HomeViewModel? homeViewModel, Repository? repository, bool? hasInternet}) {
+  return homeViewModelProvider.overrideWith((ref) {
+    return homeViewModel ??
+        HomeViewModel(
+          hasInternet: hasInternet ?? ref.read(appStateProvider).hasInternetConnection,
+          repository: repository ?? ref.read(repositoryProvider),
+        );
+  });
 }

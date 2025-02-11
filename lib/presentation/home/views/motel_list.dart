@@ -10,26 +10,24 @@ class MotelList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final homeViewModel = ref.read(homeViewModelProvider.notifier);
-
     return Container(
       color: GOColors.grey2,
       child: FutureBuilder(
-        future: homeViewModel.fetchData(),
+        future: ref.read(homeViewModelProvider.notifier).fetchData(),
         builder: (context, snapshot) {
-          return switch (snapshot.connectionState) {
-            ConnectionState.waiting => const Center(child: CircularProgressIndicator()),
-            ConnectionState.done => buildList(ref.read(homeViewModelProvider).motelList),
-            _ => const Center(
-                child: Text(
-                  'Erro ao carregar os dados',
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 300,
-                  ),
-                ),
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasError) {
+            return Center(
+              child: Text(
+                'Erro ao carregar os dados',
+                style: TextStyle(color: GOColors.primaryColor),
               ),
-          };
+            );
+          }
+
+          return buildList(ref.read(homeViewModelProvider).motelList);
         },
       ),
     );
