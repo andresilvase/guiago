@@ -20,8 +20,17 @@ class HiveStorage extends LocalStorage {
   @override
   Future<Map<String, dynamic>> get(String key) async {
     final Box box = await openBox(key);
+    final Map<String, dynamic> output = <String, dynamic>{};
 
-    return box.get(key) ?? {};
+    final response = box.get(key);
+
+    if (response != null) {
+      for (final entry in (response as Map<dynamic, dynamic>).entries) {
+        output.putIfAbsent(entry.key.toString(), () => entry.value);
+      }
+    }
+
+    return output;
   }
 
   @override

@@ -132,17 +132,20 @@ class _FilterList extends SliverPersistentHeaderDelegate {
               mainAxisAlignment: MainAxisAlignment.center,
               spacing: 4,
               children: [
+                SizedBox(width: 8),
                 Icon(
                   color: GOColors.dotsIndicatorColor,
                   Icons.tune,
                   size: 16,
                 ),
-                Text(
-                  'filtros',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    color: GOColors.textColor,
-                    fontSize: 12,
+                Expanded(
+                  child: Text(
+                    'filtros',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: GOColors.textColor,
+                      fontSize: 12,
+                    ),
                   ),
                 ),
               ],

@@ -5,7 +5,7 @@ class SuiteDiscountDTO {
 
   SuiteDiscountDTO({this.desconto});
 
-  factory SuiteDiscountDTO.fromJson(Map<String, dynamic> json) {
+  factory SuiteDiscountDTO.fromJson(Map<dynamic, dynamic> json) {
     return SuiteDiscountDTO(
       desconto: json[EnumDiscountDTO.desconto.name],
     );

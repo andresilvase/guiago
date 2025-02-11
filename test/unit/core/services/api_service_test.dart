@@ -5,7 +5,7 @@ import 'package:guiago/core/exceptions/api_exception.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../../../mocks/mocks.mocks.dart';
-import '../../fixtures/fixtures.dart';
+import '../../../fixtures/fixtures.dart';
 
 void main() {
   group('APIService', () {

@@ -23,7 +23,7 @@ class SuitesDTO {
     this.qtd,
   });
 
-  factory SuitesDTO.fromJson(Map<String, dynamic> json) {
+  factory SuitesDTO.fromJson(Map<dynamic, dynamic> json) {
     final newCategoriaItensList = <SuiteCategoriaItemsDTO>[];
     final newPeriodosList = <SuitePeriodsDTO>[];
     final newItensList = <SuiteItemsDTO>[];

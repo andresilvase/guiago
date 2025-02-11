@@ -23,7 +23,7 @@ class MotelDTO {
     this.logo,
   });
 
-  factory MotelDTO.fromJson(Map<String, dynamic> json) {
+  factory MotelDTO.fromJson(Map<dynamic, dynamic> json) {
     final newSuitesList = <SuitesDTO>[];
 
     if (json[MotelDTOEnum.suites.name] != null) {

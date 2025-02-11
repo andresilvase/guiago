@@ -1,5 +1,11 @@
 import 'dart:convert';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:guiago/core/providers/app_providers.dart';
+import 'package:riverpod/riverpod.dart';
+
+import '../mocks/mocks.mocks.dart';
+
 final mockedAPIResponse = '''
 {
   "sucesso": true,
@@ -1095,3 +1101,26 @@ final mockedAPIResponse = '''
 
 final jsonDecodedAPIResponse = jsonDecode(mockedAPIResponse);
 final String mockedBaseUrl = 'https://www.jsonkeeper.com/b/1IXK';
+
+List<Override> providersOverride({
+  MockRepositoryParams? mockRepositoryParams,
+  MockAPIServiceParams? mockAPIServiceParams,
+  MockHomeViewModel? mockHomeViewModel,
+  MockLocalStorage? mockLocalStorage,
+  MockAPIService? mockAPIService,
+  MockRepository? mockRepository,
+  MockAppState? mockAppState,
+}) {
+  return [
+    apiServiceParamsProvider.overrideWith((ref) => mockAPIServiceParams ?? MockAPIServiceParams()),
+    repositoryParamsProvider.overrideWith((ref) => mockRepositoryParams ?? MockRepositoryParams()),
+    homeViewModelProvider.overrideWith((ref) => mockHomeViewModel ?? MockHomeViewModel()),
+    connectivityProvider.overrideWith((ref) => Future.value([ConnectivityResult.none])),
+    localStorageProvider.overrideWith((ref) => mockLocalStorage ?? MockLocalStorage()),
+    apiServiceProvider.overrideWith((ref) => mockAPIService ?? MockAPIService()),
+    repositoryProvider.overrideWith((ref) => mockRepository ?? MockRepository()),
+    appStateProvider.overrideWith((ref) => mockAppState ?? MockAppState()),
+    baseUrlProvider.overrideWith((ref, fallbackUrl) => mockedBaseUrl),
+    httpClientProvider.overrideWith((ref, client) => MockClient()),
+  ];
+}

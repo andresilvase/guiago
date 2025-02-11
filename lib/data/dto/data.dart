@@ -21,13 +21,13 @@ class ResponseData {
     this.raio,
   });
 
-  factory ResponseData.fromJson(Map<String, dynamic> json) {
+  factory ResponseData.fromJson(Map<dynamic, dynamic> json) {
     final newMotelList = <MotelDTO>[];
 
     if (json[MotelDataEnum.moteis.name] != null) {
-      json[MotelDataEnum.moteis.name].forEach((m) {
+      for (var m in List.from(json[MotelDataEnum.moteis.name])) {
         newMotelList.add(MotelDTO.fromJson(m));
-      });
+      }
     }
 
     return ResponseData(

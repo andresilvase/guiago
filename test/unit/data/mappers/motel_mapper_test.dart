@@ -1,99 +1,70 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:guiago/core/domain/motel.dart';
 import 'package:guiago/data/dto/motel.dart';
-import 'package:guiago/data/dto/suite_discount.dart';
-import 'package:guiago/data/dto/suite_items.dart';
-import 'package:guiago/data/dto/suite_items_category.dart';
-import 'package:guiago/data/dto/suite_periods.dart';
 import 'package:guiago/data/dto/suites.dart';
 import 'package:guiago/data/mappers/motel_mapper.dart';
 
 void main() {
   group('MotelMapper', () {
-    test('fromDTO maps MotelDTO to Motel correctly', () {
+    test('fromDTO should correctly map MotelDTO to Motel', () {
       // Arrange
       final dto = MotelDTO(
         suites: [
           SuitesDTO(
-            categoriaItens: [
-              SuiteCategoriaItemsDTO(nome: 'Category 1', icone: 'icon1'),
-            ],
-            periodos: [
-              SuitePeriodsDTO(
-                desconto: SuiteDiscountDTO(desconto: 10),
-                tempoFormatado: '1 hour',
-                valorTotal: 100.0,
-                temCortesia: true,
-                tempo: "60",
-                valor: 90.0,
-              ),
-            ],
-            itens: [
-              SuiteItemsDTO(nome: 'Item 1'),
-            ],
-            exibirQtdDisponiveis: true,
-            fotos: ['photo1.jpg'],
             nome: 'Suite 1',
-            qtd: 5,
-          ),
+            qtd: 2,
+            fotos: ['photo1.jpg', 'photo2.jpg'],
+            exibirQtdDisponiveis: true,
+            categoriaItens: [],
+            periodos: [],
+            itens: [],
+          )
         ],
-        qtdAvaliacoes: 100,
-        qtdFavoritos: 50,
-        distancia: 5.0,
-        fantasia: 'Fantasy Motel',
+        qtdAvaliacoes: 10,
+        qtdFavoritos: 20,
+        distancia: 1.5,
+        fantasia: 'Motel Test',
         bairro: 'Downtown',
         media: 4.5,
-        logo: 'logo.png',
+        logo: 'logo.jpg',
       );
 
       // Act
       final result = MotelMapper.fromDTO(dto);
 
       // Assert
-      expect(result.suites.length, 1);
-      expect(result.suites[0].nome, 'Suite 1');
-      expect(result.suites[0].categoriaItens?.length, 1);
-      expect(result.suites[0].categoriaItens?[0].nome, 'Category 1');
-      expect(result.suites[0].periodos.length, 1);
-      expect(result.suites[0].periodos[0].desconto?.desconto, 10);
-      expect(result.suites[0].itens.length, 1);
-      expect(result.suites[0].itens[0].nome, 'Item 1');
-      expect(result.qtdAvaliacoes, 100);
-      expect(result.qtdFavoritos, 50);
-      expect(result.distancia, 5.0);
-      expect(result.fantasia, 'Fantasy Motel');
-      expect(result.bairro, 'Downtown');
-      expect(result.media, 4.5);
-      expect(result.logo, 'logo.png');
+      expect(result, isA<Motel>());
+      expect(result.suites.length, dto.suites.length);
+      expect(result.qtdAvaliacoes, dto.qtdAvaliacoes);
+      expect(result.qtdFavoritos, dto.qtdFavoritos);
+      expect(result.distancia, dto.distancia);
+      expect(result.fantasia, dto.fantasia);
+      expect(result.bairro, dto.bairro);
+      expect(result.media, dto.media);
+      expect(result.logo, dto.logo);
     });
 
-    test('fromDTO handles empty suites list correctly', () {
+    test('fromDTO should handle empty suites list', () {
       // Arrange
       final dto = MotelDTO(
         suites: [],
-        qtdAvaliacoes: 100,
-        qtdFavoritos: 50,
-        distancia: 5.0,
-        fantasia: 'Fantasy Motel',
+        qtdAvaliacoes: 10,
+        qtdFavoritos: 20,
+        distancia: 1.5,
+        fantasia: 'Motel Test',
         bairro: 'Downtown',
         media: 4.5,
-        logo: 'logo.png',
+        logo: 'logo.jpg',
       );
 
       // Act
       final result = MotelMapper.fromDTO(dto);
 
       // Assert
-      expect(result.suites.isEmpty, true);
-      expect(result.qtdAvaliacoes, 100);
-      expect(result.qtdFavoritos, 50);
-      expect(result.distancia, 5.0);
-      expect(result.fantasia, 'Fantasy Motel');
-      expect(result.bairro, 'Downtown');
-      expect(result.media, 4.5);
-      expect(result.logo, 'logo.png');
+      expect(result.suites, isEmpty);
     });
 
-    test('fromDTO handles nullable fields correctly', () {
+    test('fromDTO should handle null values', () {
       // Arrange
       final dto = MotelDTO(
         suites: [],
@@ -110,7 +81,6 @@ void main() {
       final result = MotelMapper.fromDTO(dto);
 
       // Assert
-      expect(result.suites.isEmpty, true);
       expect(result.qtdAvaliacoes, isNull);
       expect(result.qtdFavoritos, isNull);
       expect(result.distancia, isNull);

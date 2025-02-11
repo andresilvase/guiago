@@ -6,7 +6,7 @@ class SuiteCategoriaItemsDTO {
 
   SuiteCategoriaItemsDTO({this.nome, this.icone});
 
-  factory SuiteCategoriaItemsDTO.fromJson(Map<String, dynamic> json) {
+  factory SuiteCategoriaItemsDTO.fromJson(Map<dynamic, dynamic> json) {
     return SuiteCategoriaItemsDTO(
       icone: json[SuiteItemsCategoryDTOEnum.icone.name],
       nome: json[SuiteItemsCategoryDTOEnum.nome.name],

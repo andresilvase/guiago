@@ -18,12 +18,16 @@ class MotelList extends ConsumerWidget {
         future: homeViewModel.fetchData(),
         builder: (context, snapshot) {
           return switch (snapshot.connectionState) {
-            ConnectionState.waiting => const Center(
-                child: CircularProgressIndicator(),
-              ),
+            ConnectionState.waiting => const Center(child: CircularProgressIndicator()),
             ConnectionState.done => buildList(ref.read(homeViewModelProvider).motelList),
             _ => const Center(
-                child: Text('Erro ao carregar os dados'),
+                child: Text(
+                  'Erro ao carregar os dados',
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 300,
+                  ),
+                ),
               ),
           };
         },

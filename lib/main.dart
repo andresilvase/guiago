@@ -63,7 +63,10 @@ class _GuiaGoState extends State<GuiaGo> {
                 return Home();
               },
               error: (error, stackTrace) {
-                return Text(error.toString());
+                return Text(
+                  key: const Key('home_error_message'),
+                  error.toString(),
+                );
               },
               loading: () {
                 return const Center(

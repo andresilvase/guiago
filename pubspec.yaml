@@ -41,8 +41,8 @@ dependencies:
   flutter_dotenv: ^5.2.1
   hive: ^2.2.3
   hive_test: ^1.0.1  
-  flutter_riverpod: ^2.6.1  
-  riverpod: ^2.6.1
+  flutter_riverpod: ^2.4.7  
+  riverpod: ^2.4.7
   path_provider: ^2.1.5
   cached_network_image: ^3.4.1  
   

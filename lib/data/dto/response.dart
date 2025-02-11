@@ -9,7 +9,7 @@ class Response {
 
   Response({this.sucesso, this.data, this.mensagem});
 
-  factory Response.fromJson(Map<String, dynamic> json) {
+  factory Response.fromJson(Map<dynamic, dynamic> json) {
     return Response(
       data: ResponseData.fromJson(json[ResponseEnum.data.name]),
       mensagem: json[ResponseEnum.mensagem.name],

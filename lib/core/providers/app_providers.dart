@@ -13,9 +13,7 @@ import 'package:guiago/presentation/home/view_model/home_state.dart';
 import 'package:guiago/presentation/home/view_model/home_view_model.dart';
 import 'package:http/http.dart' as http;
 
-final connectivityProvider = StreamProvider<List<ConnectivityResult>>((ref) {
-  return Connectivity().onConnectivityChanged.map((event) => event);
-});
+final connectivityProvider = FutureProvider<List<ConnectivityResult>>((ref) => Connectivity().checkConnectivity());
 
 final appStateProvider = Provider<AppState>((ref) {
   return AppState(

@@ -7,7 +7,7 @@ import 'package:guiago/data/datasource/remote.dart';
 import 'package:guiago/data/dto/response.dart';
 
 import '../../../mocks/mocks.mocks.dart';
-import '../../fixtures/fixtures.dart';
+import '../../../fixtures/fixtures.dart';
 
 void main() {
   group('RemoteDataSource', () {

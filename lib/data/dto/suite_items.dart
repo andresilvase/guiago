@@ -5,7 +5,7 @@ class SuiteItemsDTO {
 
   SuiteItemsDTO({this.nome});
 
-  SuiteItemsDTO.fromJson(Map<String, dynamic> json) {
+  SuiteItemsDTO.fromJson(Map<dynamic, dynamic> json) {
     nome = json[SuiteItemsDTOEnum.nome.name];
   }
 

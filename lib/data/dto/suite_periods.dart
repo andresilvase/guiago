@@ -19,7 +19,7 @@ class SuitePeriodsDTO {
     this.valor,
   });
 
-  factory SuitePeriodsDTO.fromJson(Map<String, dynamic> json) {
+  factory SuitePeriodsDTO.fromJson(Map<dynamic, dynamic> json) {
     return SuitePeriodsDTO(
       desconto: SuiteDiscountDTO.fromJson(json[SuitePeriodsDTOEnum.desconto.name] ?? {}),
       tempoFormatado: json[SuitePeriodsDTOEnum.tempoFormatado.name],
