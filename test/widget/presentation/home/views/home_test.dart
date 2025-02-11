@@ -72,15 +72,14 @@ void main() {
       expect(find.byType(Home), findsOneWidget);
     });
 
-    testWidgets('should render a text message error when connectivity is not available', (WidgetTester tester) async {
+    testWidgets('should render a text message error when connectivity error occurs', (WidgetTester tester) async {
       container = createContainer(
         overrides: [
-          noConnectivityProviderOverride(),
+          errorConnectivityProviderOverride(),
           repositoryProviderOverride(),
           homeViewModelProviderOverride(),
         ],
       );
-
       await tester.pumpWidget(
         UncontrolledProviderScope(
           container: container,

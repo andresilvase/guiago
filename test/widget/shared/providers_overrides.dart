@@ -22,6 +22,12 @@ Override noConnectivityProviderOverride() {
   );
 }
 
+Override errorConnectivityProviderOverride() {
+  return connectivityProvider.overrideWith(
+    (ref) => Future.error('Erro ao carregar os dados'),
+  );
+}
+
 Override repositoryProviderOverride() {
   return repositoryProvider.overrideWith(
     (ref) => Repository(
