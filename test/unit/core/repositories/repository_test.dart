@@ -8,7 +8,7 @@ import 'package:guiago/data/dto/response.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../mocks/mocks.mocks.dart';
-import '../../fixtures/api_response.dart';
+import '../../fixtures/fixtures.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

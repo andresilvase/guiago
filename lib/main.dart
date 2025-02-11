@@ -8,12 +8,15 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
-Future<void> main() async {
+Future<void> initializeApp() async {
   await dotenv.load(fileName: ".env");
 
   final dir = await getApplicationDocumentsDirectory();
   Hive.init(dir.path);
+}
 
+Future<void> main() async {
+  await initializeApp();
   runApp(
     ProviderScope(
       child: MyApp(),

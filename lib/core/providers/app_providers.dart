@@ -17,12 +17,16 @@ final connectivityProvider = StreamProvider<List<ConnectivityResult>>((ref) {
 });
 
 final appStateProvider = Provider<AppState>((ref) {
-  return AppState(hasInternetConnection: Utils.hasInternet(ref.read(connectivityProvider).value));
+  return AppState(
+    hasInternetConnection: Utils.hasInternet(ref.read(connectivityProvider).value),
+  );
 });
 
 final apiServiceProvider = Provider<APIService>((ref) {
+  final String baseUrl = 'https://www.jsonkeeper.com/b/1IXK';
+
   return APIService(
-    baseUrl: dotenv.env['BASE_URL']!,
+    baseUrl: dotenv.env['BASE_URL'] ?? baseUrl,
     client: http.Client(),
   );
 });

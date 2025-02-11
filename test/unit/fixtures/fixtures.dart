@@ -1094,3 +1094,5 @@ final mockedAPIResponse = '''
 ''';
 
 final jsonDecodedAPIResponse = jsonDecode(mockedAPIResponse);
+
+final String fakeAppPath = '/path/to/app/directory';

@@ -11,10 +11,10 @@ class APIService {
   Future<Map<String, dynamic>> get() async {
     final response = await client.get(Uri.parse(baseUrl));
 
-    return _handleResponse(response);
+    return handleResponse(response);
   }
 
-  Map<String, dynamic> _handleResponse(http.Response response) {
+  Map<String, dynamic> handleResponse(http.Response response) {
     if (response.statusCode >= 200 && response.statusCode < 300) {
       final decodedBody = utf8.decode(response.bodyBytes);
       return jsonDecode(decodedBody);
