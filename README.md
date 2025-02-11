@@ -1,4 +1,4 @@
-# Guia de Motéis - Teste para Desenvolvedor Mobile (Flutter)
+# <img src="assets/logo.png" alt="Logo" width="64" style="vertical-align: middle;"/> Guia de Motéis - Teste para Desenvolvedor Mobile (Flutter)
 
 Bem-vindo(a) ao repositório do desafio técnico para desenvolvedor Flutter! Este projeto implementa a tela de listagem de motéis (aba "Ir Agora") do aplicativo Guia de Motéis GO, seguindo os requisitos estabelecidos no teste.
 
@@ -17,7 +17,7 @@ Este aplicativo foi desenvolvido utilizando **Flutter** e **Dart**, aplicando bo
 
 ## 📸 Capturas de Tela
 
-> *(Adicione aqui imagens da interface da aplicação, mostrando a listagem de motéis.)*
+<img src="assets/home.png" alt="Home" width="200"/>
 
 ## 🏗 Estrutura do Projeto
 
@@ -25,14 +25,36 @@ O projeto segue uma estrutura modularizada para melhor manutenibilidade e escala
 
 ```
 lib/
-│── main.dart                # Ponto de entrada da aplicação
-│── core/                    # Configurações globais e utilitários
-│── features/
-│   ├── motels/              # Módulo principal da listagem de motéis
-│   │   ├── data/            # Repositório e modelos de dados
-│   │   ├── presentation/    # Widgets e telas
-│   │   ├── providers/       # Gerenciamento de estado com Riverpod
-│── widgets/                 # Componentes reutilizáveis
+├── core/
+│   ├── domain/              
+│   │   ├── motel.dart
+│   │   └── suites.dart
+│   ├── providers/           
+│   │   └── app_providers.dart
+│   └── repositories/        
+│       └── repository.dart
+│
+├── presentation/
+│   ├── home/               
+│   │   ├── view_model/     
+│   │   │   ├── home_state.dart
+│   │   │   └── home_view_model.dart
+│   │   ├── views/          
+│   │   │   ├── home.dart
+│   │   │   └── motel_list.dart
+│   │   └── widgets/        
+│   │       ├── departure_time_selector.dart
+│   │       ├── dots_indicator.dart
+│   │       ├── filter.dart
+│   │       ├── header.dart
+│   │       ├── highlight_offer_widget.dart
+│   │       ├── motel_item.dart
+│   │       └── my_local.dart
+│   └── theme/              
+│       └── app_theme.dart
+│
+├── main.dart               
+└── app.dart               
 ```
 
 ## 🌐 Consumo de API
@@ -55,50 +77,59 @@ O gerenciamento de estado é feito com **Riverpod**, garantindo:
 Exemplo de provider:
 
 ```dart
-final motelProvider = FutureProvider<List<Motel>>((ref) async {
-  final repository = ref.watch(motelRepositoryProvider);
-  return repository.fetchMotels();
+final localStorageProvider = Provider<LocalStorage>((ref) {
+  return HiveStorage.instance;
 });
+
+final repositoryParamsProvider = Provider<RepositoryParams>((ref) {
+  return RepositoryParams(
+    localDataSource: LocalDataSourceImpl(localStorage: ref.read(localStorageProvider)),
+    remoteDataSource: RemoteDataSourceImpl(apiService: ref.read(apiServiceProvider)),
+  );
+});
+
 ```
 
 ## 🧪 Testes e Cobertura
 
-Foram implementados testes unitários para garantir a qualidade do código. O framework **Flutter Test** foi utilizado em conjunto com **Mocktail** para mock de dependências.
+Foram implementados testes unitários para garantir a qualidade do código. O framework **Flutter Test** foi utilizado em conjunto com **Mockito** para mock de dependências.
 
-### 📊 Cobertura de Testes com LCOV
+### 📊 Cobertura de Testes com LCOV - 96%
+
+![Cobertura de código](/assets/coverage.png)
 
 Para verificar a cobertura dos testes, utilize o seguinte comando:
 
-```sh
-flutter test --coverage
+```bash
+flutter test flutter test --coverage
 ```
 
-E para gerar o relatório legível:
+```bash
+genhtml -o coverage/html coverage/lcov.info
+```
 
-```sh
-genhtml coverage/lcov.info -o coverage/html
+```bash
 open coverage/html/index.html
 ```
 
-> *(Substitua este trecho caso utilize outra ferramenta para relatório de cobertura.)*
 
 ## 🛠 Como Executar o Projeto
 
 1. Clone este repositório:
    ```sh
-   git clone <URL_DO_REPOSITORIO>
+   git clone https://github.com/andresilvase/guiago
    ```
-2. Navegue até a pasta do projeto:
-   ```sh
-   cd guia_de_moteis_flutter
-   ```
-3. Instale as dependências:
+2. Instale as dependências:
    ```sh
    flutter pub get
    ```
-4. Execute a aplicação:
+3. Execute a aplicação:
    ```sh
    flutter run
+   ```
+4. Execute build_runner:
+   ```sh
+   dart run build_runner build
    ```
 
 ## 🔗 Repositório no GitHub
