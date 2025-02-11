@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:guiago/data/interfaces/interfaces.dart';
 import 'package:mockito/mockito.dart';
 import 'package:guiago/core/exceptions/data_source_exception.dart';
 import 'package:guiago/core/utils/constants.dart';
@@ -15,7 +16,7 @@ void main() {
 
     setUp(() {
       mockLocalStorage = MockLocalStorage();
-      localDataSource = LocalDataSource(localStorage: mockLocalStorage);
+      localDataSource = LocalDataSourceImpl(localStorage: mockLocalStorage);
     });
 
     test('getData returns Response when localStorage.get is successful', () async {

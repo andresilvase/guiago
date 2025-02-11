@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:guiago/data/interfaces/interfaces.dart';
 import 'package:mockito/mockito.dart';
 import 'package:guiago/core/exceptions/api_exception.dart';
 import 'package:guiago/core/exceptions/data_source_exception.dart';
@@ -15,7 +16,7 @@ void main() {
 
     setUp(() {
       mockAPIService = MockAPIService();
-      remoteDataSource = RemoteDataSource(apiService: mockAPIService);
+      remoteDataSource = RemoteDataSourceImpl(apiService: mockAPIService);
     });
 
     test('getData returns Response when apiService.get is successful', () async {

@@ -2,14 +2,20 @@ import 'package:guiago/core/exceptions/api_exception.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class APIService {
-  final http.Client client;
+class APIServiceParams {
   final String baseUrl;
+  final http.Client client;
 
-  APIService({required this.baseUrl, required this.client});
+  APIServiceParams({required this.baseUrl, required this.client});
+}
+
+class APIService {
+  final APIServiceParams params;
+
+  APIService({required this.params});
 
   Future<Map<String, dynamic>> get() async {
-    final response = await client.get(Uri.parse(baseUrl));
+    final response = await params.client.get(Uri.parse(params.baseUrl));
 
     return handleResponse(response);
   }

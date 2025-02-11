@@ -1,4 +1,4 @@
-import 'package:guiago/data/interfaces/local_storage.dart';
+import 'package:guiago/data/interfaces/interfaces.dart';
 import 'package:hive/hive.dart';
 
 class HiveStorage extends LocalStorage {

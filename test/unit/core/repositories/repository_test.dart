@@ -21,8 +21,10 @@ void main() {
     mockLocalDataSource = MockLocalDataSource();
 
     repository = Repository(
-      remoteDataSource: mockRemoteDataSource,
-      localDataSource: mockLocalDataSource,
+      params: RepositoryParams(
+        localDataSource: mockLocalDataSource,
+        remoteDataSource: mockRemoteDataSource,
+      ),
     );
   });
 

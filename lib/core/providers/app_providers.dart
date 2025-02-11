@@ -1,4 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:guiago/core/domain/app_state.dart';
 import 'package:guiago/core/repositories/repository.dart';
@@ -7,10 +8,10 @@ import 'package:guiago/core/services/local_storage.dart';
 import 'package:guiago/core/utils/utils.dart';
 import 'package:guiago/data/datasource/local.dart';
 import 'package:guiago/data/datasource/remote.dart';
+import 'package:guiago/data/interfaces/interfaces.dart';
 import 'package:guiago/presentation/home/view_model/home_state.dart';
-import 'package:http/http.dart' as http;
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:guiago/presentation/home/view_model/home_view_model.dart';
+import 'package:http/http.dart' as http;
 
 final connectivityProvider = StreamProvider<List<ConnectivityResult>>((ref) {
   return Connectivity().onConnectivityChanged.map((event) => event);
@@ -22,20 +23,38 @@ final appStateProvider = Provider<AppState>((ref) {
   );
 });
 
-final apiServiceProvider = Provider<APIService>((ref) {
-  final String baseUrl = 'https://www.jsonkeeper.com/b/1IXK';
+final baseUrlProvider = Provider.family<String, String>((ref, fallbackUrl) {
+  return dotenv.env['BASE_URL'] ?? fallbackUrl;
+});
 
-  return APIService(
-    baseUrl: dotenv.env['BASE_URL'] ?? baseUrl,
-    client: http.Client(),
+final httpClientProvider = Provider.family<http.Client, http.Client?>((ref, client) {
+  return client ?? http.Client();
+});
+
+final apiServiceParamsProvider = Provider<APIServiceParams>((ref) {
+  return APIServiceParams(
+    client: ref.read(httpClientProvider(null)),
+    baseUrl: ref.read(baseUrlProvider('https://www.jsonkeeper.com/b/1IXK')),
+  );
+});
+
+final apiServiceProvider = Provider<APIService>((ref) {
+  return APIService(params: ref.read(apiServiceParamsProvider));
+});
+
+final localStorageProvider = Provider<LocalStorage>((ref) {
+  return HiveStorage.instance;
+});
+
+final repositoryParamsProvider = Provider<RepositoryParams>((ref) {
+  return RepositoryParams(
+    localDataSource: LocalDataSourceImpl(localStorage: ref.read(localStorageProvider)),
+    remoteDataSource: RemoteDataSourceImpl(apiService: ref.read(apiServiceProvider)),
   );
 });
 
 final repositoryProvider = Provider<Repository>((ref) {
-  return Repository(
-    remoteDataSource: RemoteDataSource(apiService: ref.read(apiServiceProvider)),
-    localDataSource: LocalDataSource(localStorage: HiveStorage.instance),
-  );
+  return Repository(params: ref.read(repositoryParamsProvider));
 });
 
 final homeViewModelProvider = StateNotifierProvider<HomeViewModel, HomeState>((ref) {

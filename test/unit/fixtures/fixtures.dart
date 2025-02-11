@@ -1094,3 +1094,4 @@ final mockedAPIResponse = '''
 ''';
 
 final jsonDecodedAPIResponse = jsonDecode(mockedAPIResponse);
+final String mockedBaseUrl = 'https://www.jsonkeeper.com/b/1IXK';

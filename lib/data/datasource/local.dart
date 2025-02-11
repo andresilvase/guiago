@@ -1,13 +1,12 @@
 import 'package:guiago/core/exceptions/data_source_exception.dart';
 import 'package:guiago/core/utils/constants.dart';
-import 'package:guiago/data/interfaces/data_source.dart';
 import 'package:guiago/data/dto/response.dart';
-import 'package:guiago/data/interfaces/local_storage.dart';
+import 'package:guiago/data/interfaces/interfaces.dart';
 
-class LocalDataSource implements DataSource {
+class LocalDataSourceImpl implements LocalDataSource {
   final LocalStorage localStorage;
 
-  LocalDataSource({required this.localStorage});
+  LocalDataSourceImpl({required this.localStorage});
 
   @override
   Future<Response> getData() async {
@@ -22,6 +21,7 @@ class LocalDataSource implements DataSource {
     }
   }
 
+  @override
   Future<void> saveData(Response response) async {
     try {
       await localStorage.put(Constants.storageKey, response.toJson());

@@ -1,16 +1,22 @@
 import 'package:guiago/core/domain/motel.dart';
 import 'package:guiago/core/exceptions/api_exception.dart';
 import 'package:guiago/core/exceptions/data_source_exception.dart';
-import 'package:guiago/data/datasource/local.dart';
-import 'package:guiago/data/datasource/remote.dart';
 import 'package:guiago/data/dto/response.dart';
+import 'package:guiago/data/interfaces/interfaces.dart';
+
 import 'package:guiago/data/mappers/motel_mapper.dart';
 
-class Repository {
+class RepositoryParams {
   final RemoteDataSource remoteDataSource;
   final LocalDataSource localDataSource;
 
-  Repository({required this.remoteDataSource, required this.localDataSource});
+  RepositoryParams({required this.remoteDataSource, required this.localDataSource});
+}
+
+class Repository {
+  Repository({required this.params});
+
+  final RepositoryParams params;
 
   Future<List<Motel>> getMotelList(bool hasInternet) async {
     List<Motel> motelList = [];
@@ -19,10 +25,10 @@ class Repository {
       late Response response;
 
       if (hasInternet) {
-        response = await remoteDataSource.getData();
-        await localDataSource.saveData(response);
+        response = await params.remoteDataSource.getData();
+        await params.localDataSource.saveData(response);
       } else {
-        response = await localDataSource.getData();
+        response = await params.localDataSource.getData();
       }
 
       if (response.sucesso == true) {
