@@ -1116,8 +1116,8 @@ List<Override> providersOverride({
     repositoryParamsProvider.overrideWith((ref) => mockRepositoryParams ?? MockRepositoryParams()),
     homeViewModelProvider.overrideWith(
       (ref) => HomeViewModel(
-        hasInternet: ref.watch(appStateProvider).hasInternetConnection,
         repository: ref.watch(repositoryProvider),
+        hasInternet: true,
       ),
     ),
     connectivityProvider.overrideWith((ref) => Future.value([ConnectivityResult.none])),
