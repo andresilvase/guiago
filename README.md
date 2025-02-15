@@ -23,7 +23,7 @@ Este aplicativo foi desenvolvido utilizando **Flutter** e **Dart**, aplicando bo
 
 Confira o aplicativo em funcionamento:
 
-[![Demo Guia de Motéis](https://drive.google.com/file/d/1ytV3sI4MtSMHZrxHo7jqo5Bukqwb4sIQ/view?usp=sharing)
+[![Demo Guia de Motéis](assets/video_thumbnail.png)](https://youtu.be/H6aTh-5lxrE)
 
 ## 🏗 Estrutura do Projeto
 
