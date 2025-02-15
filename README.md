@@ -27,7 +27,7 @@ Confira o aplicativo em funcionamento:
   <a href="https://www.youtube.com/watch?v=H6aTh-5lxrE" target="_blank">
     <img src="assets/video_thumbnail.png" alt="Watch the video" width="560"/>
   </a>
-  <p><strong>Guia GO - Demonstração da interface de listagem de motéis com recursos de filtragem, localização e informações detalhadas sobre as acomodações disponíveis.</strong></p>
+  <p><strong>Guia GO - Demonstração da interface de listagem de motéis e informações detalhadas sobre as acomodações disponíveis.</strong></p>
 </div>
 
 ## 🏗 Estrutura do Projeto
